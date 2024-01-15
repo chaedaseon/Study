@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>BootEx06.html</title>
+
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<style type="text/css">
+	#content
+	{
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		width: 300px;
+		padding: 15px;
+		margin: 30px;
+	}
+	#content h3
+	{
+		margin: 0px;
+		margin-bottom: 15px;
+	}
+</style>
+
+</head>
+<body>
+
+<div>
+	<h1>기본 폼 구성하기</h1>
+	<hr>
+</div>
+
+<div id="content">
+	
+	<h3>재고 관리 <small>입출고 관리하기</small></h3>
+	
+	<form>
+	
+		<div>
+			<label>입력하기</label>
+			
+			<!-- 『.input-group』 : 접두어, 접미어, 컨트롤을 함께 묶어주는 역할 수행 -->
+			<div class="input-group">
+				<div class="input-group-addon">원두</div>
+				<input type="text" id="txtCount" placeholder="수량을 입력하세요"
+				class="form-control" required="required">
+				<div class="input-group-addon">kg</div>
+			</div>
+			
+			<div class="input-group">
+				<div class="input-group-addon">우유</div>
+				<input type="text" id="txtCheck" placeholder="수량을 입력하세요"
+				class="form-control" required="required">				
+				<div class="input-group-addon">ml</div>
+			</div>
+		</div>
+		
+		<input type="submit" value="입력하기" class="btn btn-success">
+	
+	</form>
+
+</div>
+
+</body>
+</html>
