@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test030_1.html</title>
+
+<script type="text/javascript">
+	
+	var cnt = 0;				//-- 선택할 수 있는 아이스크림의 갯수
+	var userCnt = 0;			//-- 사용자가 선택한 아이스크림의 갯수
+	
+	// 사이즈 선택 시 호출
+	function countSet(val)
+	{
+		// 확인
+		//alert("함수 호출");
+		//alert(val);
+		
+		// 매개변수로 넘겨받은 데이터를 이용하여
+		// 선택할 수 있는 아이스크림의 갯수 설정
+		cnt = parseInt(val);
+		
+		// 확인
+		alert("당신이 선택할 수 있는 아이스크림의 갯수는 『" + cnt + "』 입니다.");
+		
+	}
+	
+	// 아이스크림 종류 선택 시 호출
+	function actionChoice(obj)
+	{
+		// 확인
+		//alert("함수 호출");
+		//alert("체크되었는지의 여부");
+		//alert(obj);
+		
+		//alert(obj.checked);
+		//-- 체크 설정되며 클릭된 상황 vs 체크 해제되며 클릭된 상황 → 판단 가능~!!!
+		//--==>> trun / false → 클릭 액션에 의해 check 되었을 떄 true
+		
+		//var userCnt = 0; → 지역변수로 선언하면 함수 호출될 때(체크될 때)마다 0으로 초기화되므로 전역변수 선언!!!
+		
+		if (obj.checked) 	//-- true → 체크 설정
+		{
+			if (userCnt >= cnt)
+			{
+				alert("선택할 수 있는 갯수를 초과하였습니다~!!!");
+				
+				// check~!!!
+				obj.checked = false;
+					
+				return;
+			}
+			
+			// 사용자가 선택한 갯수 증가
+			userCnt++;			
+		}
+		else 				//-- false → 체크 해제
+		{
+			// 사용자가 선택한 갯수 감소
+			userCnt--;
+		}
+		
+		// 확인
+		//alert("userCnt : " + userCnt);
+		//alert(cnt + "개 중 " + userCnt + "개 선택");
+		
+	}
+
+</script>
+</head>
+<body>
+
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+
+<div>
+	
+	<h2>아이스크림 주문</h2>
+	
+	<form>
+		--- 사이즈 선택 --- <br><br>
+		
+		<label><input type="radio" name="radioGroup" id="a" value="1" onclick="countSet(1)"> 싱글</label>
+		<label><input type="radio" name="radioGroup" id="b" value="2" onclick="countSet(2)"> 더블</label>		
+		<label><input type="radio" name="radioGroup" id="c" value="3" onclick="countSet(3)"> 파인트</label>
+		<label><input type="radio" name="radioGroup" id="d" value="4" onclick="countSet(4)"> 쿼터</label>
+		<label><input type="radio" name="radioGroup" id="e" value="5" onclick="countSet(5)"> 패밀리</label>
+		<label><input type="radio" name="radioGroup" id="f" value="6" onclick="countSet(6)"> 하프갤런</label>
+		<br><br>
+		
+		
+		-- 종류 선택 -- <br><br>
+		<!-- 『this』는 객체에 접근이 가능! name, id, value 등 각각의 값을 불러올 때 사용! -->
+		<label><input type="checkbox" name="checkGroup" id="f1" value="001" onclick="actionChoice(this)"> 엄마는외계인</label>
+		<label><input type="checkbox" name="checkGroup" id="f2" value="002" onclick="actionChoice(this)"> 레인보우샤베트</label>
+		<label><input type="checkbox" name="checkGroup" id="f3" value="003" onclick="actionChoice(this)"> 민트초코</label>
+		<br>
+		
+		<label><input type="checkbox" name="checkGroup" id="f4" value="004" onclick="actionChoice(this)"> 바람과함께사라지다</label>
+		<label><input type="checkbox" name="checkGroup" id="f5" value="005" onclick="actionChoice(this)"> 애플민트</label>
+		<label><input type="checkbox" name="checkGroup" id="f6" value="006" onclick="actionChoice(this)"> 초코나무숲</label>
+		<br>
+		
+		<label><input type="checkbox" name="checkGroup" id="f7" value="007" onclick="actionChoice(this)"> 피스타치오아몬드</label>
+		<label><input type="checkbox" name="checkGroup" id="f8" value="008" onclick="actionChoice(this)"> 아몬드봉봉</label>
+		<label><input type="checkbox" name="checkGroup" id="f9" value="009" onclick="actionChoice(this)"> 요거트31</label>
+		<br>
+		
+		<label><input type="checkbox" name="checkGroup" id="f10" value="0010" onclick="actionChoice(this)"> 체리쥬빌레</label>
+		<label><input type="checkbox" name="checkGroup" id="f11" value="0011" onclick="actionChoice(this)"> 슈팅스타</label>
+		<label><input type="checkbox" name="checkGroup" id="f12" value="0012" onclick="actionChoice(this)"> 사랑에빠진딸기</label>
+		<br>
+		
+		<label><input type="checkbox" name="checkGroup" id="f13" value="0013" onclick="actionChoice(this)"> 뉴욕치즈케이크</label>
+		<label><input type="checkbox" name="checkGroup" id="f14" value="0014" onclick="actionChoice(this)"> 쿠앤크</label>
+		<label><input type="checkbox" name="checkGroup" id="f15" value="0015" onclick="actionChoice(this)"> 베리베리스트로베리</label>
+		<br>	
+	</form>
+	
+</div>
+
+</body>
+</html>

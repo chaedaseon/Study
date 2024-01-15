@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test019.html</title>
+
+<style type="text/css">
+	
+	* {font-family: 맑은 고딕; font-weight: blod; font-size: 15pt;}
+	.txt {width: 80px; text-align: right;}
+	.content {text-align: left;} 
+	
+</style>
+
+<script type="text/javascript">
+	
+	function actionResult()
+	{
+		var numStr = document.getElementById("num").value;
+		var num = parseInt(numStr);
+		var sum = 0;
+		var result = document.getElementById("result");
+		
+		result.value="";
+		
+		//alert(numStr);
+		if (num < 100)
+		{
+			alert("100이상 숫자를 입력하세요.");
+		}		
+		else
+		{		
+			for (var i = 1; i <= num; i++)
+			{				
+				sum += i;
+				
+				if (i%10==0 && i!=num)
+					result.value += "1 ~ " + i + " : " + sum + "\n";
+				if (i == num)
+					result.value += "1 ~ " + i + " : " + sum;	
+			}
+		}		
+	}
+
+</script>
+
+</head>
+<body>
+
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+
+<!--
+	사용자로부터 임의의 정수 n 을 입력받아
+	1 부터 n 까지의 합을 계산하되
+	n 은 100 이상만 허용하고,
+	출력 시 10의 배수가 될 때 마다 중간 합을 출력할 수 있는 페이지를 구성한다.
+	반복문을 활용할 수 있도록 한다.
+	
+	HTML, CSS, Javascript 를 활용
+	
+	페이지 레이아웃					(입력값은 100이상만 가능~!!!)
+	--------------------------------------↑-----------------------------------
+										  ↑
+	정수 입력(100 이상) [  101	] → 조건 유효성 			num
+	
+			< 결과 >		< 취소 >
+			
+	---------------------------------------- → textarea 	result
+	1 ~ 10 : 55 	┐
+	1 ~ 20 : 210 	│
+	1 ~ 30 : xxx 	│중간 합
+	  : 			│
+	1 ~ 100 : 5050 	┘
+	1 ~ 101 : 5151  - 최종 합
+	----------------------------------------
+	
+	--------------------------------------------------------------------------
+-->
+
+<div>
+	<form>
+		정수 입력(100 이상) <input type="text" id="num" class="txt"><br><br>
+		<input type="button" id="btnRes" class="btn" value="결과" onClick="actionResult()">
+		<input type="reset" id="reset" class="btn" value="취소"><br><br>
+		<textarea cols="28" rows="20" class="area" id="result"></textarea>
+		
+	</form>
+</div>
+
+</body>
+</html>

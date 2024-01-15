@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test015.html</title>
+<style type="text/css">
+	*
+	{
+		color: #343;
+		font-family: 맑은 고딕;
+	}
+	input.box:focus
+	{
+		background-color: yellow;
+	}
+	input.btn:hover
+	{
+		color: orange;
+		font-weight: bold;
+	}
+	
+	input.numberBox
+	{
+		width : 50px;
+		text-align: right;
+	}
+	
+</style>
+
+<script type="text/javascript">
+
+	
+	function actionBtnA()
+	{
+		// 테스트
+		//alert("A버튼 클릭 확인~!!!");
+		
+		//alert(document.getElementById("txtLeft"));
+		//alert(document.getElementById("txtLeft").value);
+		
+		var txt01 = document.getElementById("txtLeft");
+		var txt02 = document.getElementById("txtRight");
+		
+		// 테스트 
+		//alert(txt01);
+		//alert(txt01.value);
+		
+		var leftStr = txt01.value;
+		
+		txt02.value = leftStr;		
+	}
+	
+	function actionBtnB()
+	{
+		// 테스트
+		//alert("B버튼 클릭 확인~!!!");
+		
+		var txt01 = document.getElementById("txtLeft");
+		var txt02 = document.getElementById("txtRight");
+		
+		var rightStr = txt02.value;
+		
+		txt01.value = rightStr;
+	}
+	
+	function actionBtnResult()
+	{
+		// 테스트
+		//alert("함수 호출 확인~!!!");
+		
+		var txt01 = document.getElementById("txtNumber01");
+		var txt02 = document.getElementById("txtNumber02");
+		var txtRes = document.getElementById("txtResult");
+		
+		var num1 = txt01.value;
+		var num2 = txt02.value;
+		
+		// 확인
+		//alert(num1);
+		//alert(num2);
+		
+		//var result = num1 + num2;				//-- 문자열 결합	"12" + "23" = "1223"
+		// parseInt()
+		//var result = parseInt(num1 + num2);	//-- 문자열 결합된 결과물을 정수형태로 변환
+		
+		//var result = parseInt(num1) + parseInt(num2);
+		//						"12"			 "23"
+		//			   -------------    --------------
+		//					 12 			  23
+		
+		var result = Number(num1) + Number(num2);
+		// └ Number 객체의 생성자 호출 → parseInt()와 같은 기능 (문자열 → 정수형으로 변환)		
+		
+		// 확인
+		//alert(result);
+		
+		txtRes.value = result;
+		
+		
+		// 위의 처리 내용과 같은 결과
+		/* 
+		document.getElementById("txtResult").value
+		= parseInt(document.getElementById("txtNumber01").value)
+		+ parseInt(document.getElementById("txtNumber02").value); 
+		*/
+		
+	}
+
+</script>
+
+</head>
+<body>
+
+<div>
+	<h1>자바스크립트 기본 관찰</h1>
+	<hr>
+</div>
+
+<div>
+	<br>
+	<input type="text" class="box" id="txtLeft">
+	<input type="button" value="A버튼" class="btn" id="btnA" onclick="actionBtnA()">
+	<input type="button" value="B버튼" class="btn" id="btnB" onclick="actionBtnB()">
+	<input type="text" class="box" id="txtRight">
+	
+	<br><br><br>
+	<hr>
+	
+	<input type="text" class="numberBox" id="txtNumber01">
+	+
+	<input type="text" class="numberBox" id="txtNumber02">
+	
+	<input type="button" value=" = " class="btn" id="btnResult" onclick="actionBtnResult()">
+	
+	<input type="text" class="numberBox" id="txtResult" disabled="disabled">
+	
+	
+		
+ 
+</div>
+
+</body>
+</html>
