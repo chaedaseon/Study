@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>EmmetTest02.html</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+
+실습 1.
+내가▼
+h1#title.blue{Emmet}+(h2.subtitle{소제목}+p.content{내용})*5
+
+<h1 id="title" class="blue">Emmet</h1>
+<h2 class="subtitle">소제목</h2>
+<p class="content">내용</p>
+<h2 class="subtitle">소제목</h2>
+<p class="content">내용</p>
+<h2 class="subtitle">소제목</h2>
+<p class="content">내용</p>
+<h2 class="subtitle">소제목</h2>
+<p class="content">내용</p>
+<h2 class="subtitle">소제목</h2>
+<p class="content">내용</p>
+
+
+실습 2.
+내가▼
+table>(tr.line>(td.col{내용$}+td.comm{부연설명})*3)*3
+같이▼
+table>tr.line*3>((td.col{내용$})*3(td.comm{부연설명}))
+<table>
+	<tr class="line">
+		<td class="col">내용1</td>
+		<td class="comm">부연설명</td>
+		<td class="col">내용2</td>
+		<td class="comm">부연설명</td>
+		<td class="col">내용3</td>
+		<td class="comm">부연설명</td>
+	</tr>
+	<tr class="line">
+		<td class="col">내용1</td>
+		<td class="comm">부연설명</td>
+		<td class="col">내용2</td>
+		<td class="comm">부연설명</td>
+		<td class="col">내용3</td>
+		<td class="comm">부연설명</td>
+	</tr>
+	<tr class="line">
+		<td class="col">내용1</td>
+		<td class="comm">부연설명</td>
+		<td class="col">내용2</td>
+		<td class="comm">부연설명</td>
+		<td class="col">내용3</td>
+		<td class="comm">부연설명</td>
+	</tr>
+</table>
+
+
+실습 3.
+내가▼
+table#table>(tr#line$>th#head${항목$}$+(td.col{내용$})*3)*2
+같이▼
+table#table>tr#line$*2>(th#head${항목$}$+(td.col{내용$})*3)
+<table id="table">
+	<tr id="line1">
+		<th id="head1">항목1</th>
+		<td class="col">내용1</td>
+		<td class="col">내용2</td>
+		<td class="col">내용3</td>
+	</tr>
+	<tr id="line2">
+		<th id="head2">항목2</th>
+		<td class="col">내용1</td>
+		<td class="col">내용2</td>
+		<td class="col">내용3</td>
+	</tr>
+</table>
+
+
+</body>
+</html>
