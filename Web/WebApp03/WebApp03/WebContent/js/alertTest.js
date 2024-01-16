@@ -1,5 +1,0 @@
-/**
- * alertTest.js 
- */
-
-alert(message);
