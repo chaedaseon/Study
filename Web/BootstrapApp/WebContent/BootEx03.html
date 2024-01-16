@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>BootEx03.html</title>
+
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<style type="text/css">
+	
+	#main{width: 700px; margin: 0px auto;}
+
+	#table1
+	{
+		width: 720px;
+	}
+	#table1 th {text-align:  center;}
+	#table1 th:nth-child(1) {width: 50px;}
+	#table1 th:nth-child(2) {width: 440px;}
+	#table1 th:nth-child(3) {width: 80px;}
+	#table1 th:nth-child(4) {width: 100px;}
+	#table1 th:nth-child(5) {width: 50px;}
+	
+	#table1 td {text-align: center;}
+	#table1 td:ntd-child(2) {text-align: left;}
+	#table1 td:ntd-child(5) {text-align: right;}
+	
+	#btnSet {margin-top: -10px;}
+	
+	#tblAdd {width: 600px;}
+	#tblAdd th {width: 150px; text-align: right; padding: 15px;}
+	
+
+</style>
+
+</head>
+<body>
+
+<h1>회원 가입</h1>
+
+<form style="width: 600px; margin: 20px;">
+
+	<input type="text" class="form-control">
+	<br>
+	
+	<textarea cols="" rows="" class="form-control"></textarea>
+	<br>
+	
+	<select class="form-control">
+		<option>Test1</option>
+		<option>Test2</option>
+		<option>Test3</option>
+		<option>Test4</option>
+	</select>
+	
+	<!-- check~!!! -->
+	<input type="checkbox" class="form-control">
+	<br>
+	
+	<!-- check~!!! -->
+	<a href="#" class="form-control">네이버</a>
+	<a href="#" class="form-control">다음</a>
+	<br><br><br><br>
+	
+	<input type="button" value="confirm">
+	<input type="button" value="confirm" class="btn">
+	<input type="button" value="confirm" class="btn btn-default">
+	<br><br>
+	
+	<input type="button" value="confirm" class="btn btn-success">
+	<input type="button" value="confirm" class="btn btn-primary">
+	<input type="button" value="confirm" class="btn btn-secondary">
+	<input type="button" value="confirm" class="btn btn-info">
+	<input type="button" value="confirm" class="btn btn-warning">
+	<br>
+	<input type="button" value="confirm" class="btn btn-danger">
+	<input type="button" value="confirm" class="btn btn-light">
+	<input type="button" value="confirm" class="btn btn-dark">
+	<br>
+	<input type="button" value="confirm" class="btn btn-link">
+	<br><br><hr><br><br>
+	
+	
+	<input type="button" value="confirm" class="btn btn-primary">
+	<input type="button" value="confirm" class="btn btn-primary active">
+	<br><br>
+	
+	<input type="button" value="confirm" class="btn btn-warning">
+	<input type="button" value="confirm" class="btn btn-warning active">
+	<br><br><hr><br><br>
+	
+	
+	<input type="button" value="confirm" class="btn btn-outline-success">
+	<input type="button" value="confirm" class="btn btn-outline-primary">
+	<input type="button" value="confirm" class="btn btn-outline-secondary">
+	<input type="button" value="confirm" class="btn btn-outline-info">
+	<br>
+	<input type="button" value="confirm" class="btn btn-outline-warning">
+	<input type="button" value="confirm" class="btn btn-outline-danger">
+	<input type="button" value="confirm" class="btn btn-outline-light">
+	<input type="button" value="confirm" class="btn btn-outline-dark">
+	<br><br><hr><br><br>
+	
+		
+	<input type="button" value="confirm" class="btn btn-outline-success btn-lg">
+	<input type="button" value="confirm" class="btn btn-outline-primary btn-sm">
+	<br><br><hr><br><br>
+
+
+	<!-- check~!!! -->
+	<!-- 웹 표준에 근거... a 태그를 버튼처럼 만들어 사용하려면 role 에 명시해줘야함 -->
+	<a href="#">네이버</a>
+	<a href="#" class="btn btn-primary" role="button">네이버</a>
+</form>
+<br><br><hr><br><br>
+
+<div id="main">
+	<h1>게시판</h1>
+	
+	<table class="table table-striped" id="table1">
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>이름</th>
+			<th>날짜</th>
+			<th>읽음</th>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>게시판 테스트입니다.</td>
+			<td>노은하</td>
+			<td>2024-01-04</td>
+			<td>12</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>게시판 테스트일껄요.</td>
+			<td>이주형</td>
+			<td>2024-01-03</td>
+			<td>19</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>게시판 테스트이기를.</td>
+			<td>박나영</td>
+			<td>2024-01-03</td>
+			<td>22</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>게시판 테스트인거죠.</td>
+			<td>김다슬</td>
+			<td>2024-01-02</td>
+			<td>39</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>게시판 테스트인가요.</td>
+			<td>김민지</td>
+			<td>2024-01-01</td>
+			<td>42</td>
+		</tr>
+	</table>
+	
+	<div id="btnSet">
+		<input type="button" value="글쓰기" class="btn btn-primary">
+		<input type="button" value="새로고침" class="btn btn-secondary">
+	</div>
+	
+</div>
+<br><br><hr><br><br>
+
+<div id="main">
+
+	<h1>게시판 글쓰기</h1>
+	
+	<form>
+	
+	<table class="table table=bordered" id="tblAdd">
+		<tr>
+			<th>이름</th>
+			<td>
+				<input type="text" class="form-control" placeholder="이름을 입력하세요">
+			</td>
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td>
+				<input type="text" class="form-control" placeholder="제목을 입력하세요">
+			</td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td>
+				<textarea cols="" rows="" class="form-control" placeholder="내용을 입력하세요"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<th>암호</th>
+			<td>
+				<input type="password" class="form-control" placeholder="암호를 입력하세요">
+			</td>
+		</tr>
+		<tr>
+			<th>파일</th>
+			<td>
+				<input type="file" class="form-control" placeholder="파일을 선택하세요">
+			</td>
+		</tr>
+	</table>
+	<br>
+	<div id="btnSet">
+		<input type="button" value="확인" class="btn btn-primary">
+		<input type="button" value="취소" class="btn btn-secondary">
+	</div>
+	<br>
+	
+	</form>
+
+</div>
+
+
+</body>
+</html>

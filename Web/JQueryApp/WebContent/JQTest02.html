@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JQTest02.html</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+
+<style type="text/css">
+	.item
+	{
+		border: 2px solid red;
+		color: white;
+		background-color: black;
+	}
+</style>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+	function test()
+	{
+		alert("함수 호출~!!!");
+		var a=10;
+	}
+	
+	//jquery();
+	//jquery(document).ready();
+	//$();
+	//$(document).ready();
+	
+	
+	/*
+	$(document).ready(function()
+	{
+		//alert("함수 호출~!!!!");
+		
+		// ※ 우리가... 또는 이 페이지를 이용하는 사용자가...
+		//    뭔가 건드리지 않아도...
+		//    (즉, 특별한 이벤트를 발생기키지 않더라도...)
+		//    자동으로 처리할 수 있는 영역
+	});
+	*/
+	
+	
+	$(function()
+	{
+		//alert("함수 호출~!!!!");
+		
+		// ※ 우리가... 또는 이 페이지를 이용하는 사용자가...
+		//    뭔가 건드리지 않아도...
+		//    (즉, 특별한 이벤트를 발생시키지 않더라도...)
+		//    자동으로 처리할 수 있는 영역
+		
+		// h1 이 클릭되었을 때 특정 동작을 할 수 있도록 처리
+		//						↓
+		//$("h1").click(h1이 클릭되었을 때 수행되어야 할 동작, 기능, 행위);
+		//						↓
+		//$("h1").click(h1이 클릭되었을 때 수행되어야 할 함수 정의);
+		//						↓
+		//$("h1").click(이름이 필요없는 함수 정의);
+		
+		/*
+		$("h1").click(function()
+		{
+			//alert("클릭되었네요~ ㅎㅎㅎ");
+			//alert( $(this).html() );
+			//$(this).html("어떻게 될까요?");
+			$(this).html($(this).html()+ "♥");
+		});
+		*/
+		
+		// $("h1").on("이벤트", 기능, 동작, 행위);
+		
+		// $("h1").on("click", 기능, 동작, 행위);
+		
+		/*
+		$("h1").on("click", function()
+		{
+			//alert("클릭~!!!");
+			alert( $(this).html() );
+			
+		});
+		*/
+		
+		/*
+		$("h1").one("click", function()
+		{
+			//alert( $(this).html() );
+			
+			//$(this).html(기능);
+			$(this).html(function(index, html)
+			{
+				//alert(html);
+				//alert(index);
+				return html + "★";
+				
+			});			
+		});
+		*/
+		
+		// {속성명:속성값, 속성명:속성값, 속성명:속성값, ...}
+		
+		//$("h2").click();
+		//$("h2").key...();
+		//$("h2").mouse();
+		
+		//$("h1").on({이벤트:기능, 이벤트:기능, ...});
+		
+		/*
+		$("h1").on(
+		{
+			이벤트:기능, 이벤트:기능
+		});
+		*/
+		
+		/*
+		$("h1").on(
+		{
+			이벤트:function() {}, 이벤트:function() {}
+		});
+		*/
+		
+		/*
+		$("h1").on(
+		{
+			// mouseenter:어찌어찌하겠다		→ 마우스 진입 시
+			// mouseleave:저찌저찌하겠다		→ 마우스 이탈 시			
+			mouseenter:function() { $(this).addClass("item"); }
+			, mouseleave:function() { $(this).removeClass("item"); }
+		});
+		*/
+		
+		// mouseenter, mouseleave
+		$("h1").hover(function()
+		{
+			$(this).addClass("item");
+			
+		}, function()
+		{
+			$(this).removeClass("item");
+		});
+		
+		
+		
+		
+	});
+
+</script>
+
+</head>
+<body>
+
+<h1 onclick="test()">이윤수</h1>
+<h1 class="item">임하성</h1>
+
+<h1>김지민</h1>
+<h1>엄재용</h1>
+<h1>이주형</h1>
+<h1>김동민</h1>
+<h1>강혜성</h1>
+
+</body>
+</html>
