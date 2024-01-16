@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- ※ 스프링이 제공하는 환경 설정 XML 샘플 파일 활용 -->
+	<!-- → 스프링이 생성하고 관리해야 할 객체들에 대한 정보 전달 -->
+
+	<!-- CalculatorImpl 클래스의 객체 생성 및 관리를 위한 정보 전달 -->
+	<bean id="cal" class="com.test.spr.CalculatorImpl"></bean>
+
+	<!-- CalculatorAspect 클래스의 객체 생성 및 관리를 위한 정보 전달 -->
+	<bean id="aspect" class="com.test.spr.CalculatorAspect"></bean>
+
+	<!-- 스프링이 제공하는 가짜 객체(Proxy) 클래스의 객체 생성 및 관리를 위한 정보 전달 -->
+	<!-- → 『ProxyFactoryBean』 -->
+	<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+
+		<!-- 주 업무 클래스의 인터페이스 정보 제공 -->
+		<!-- → 『proxyInterfaces』 -->
+		<property name="proxyInterfaces">
+			<list>
+				<value>com.test.spr.Calculator</value>
+			</list>
+		</property>
+
+		<!-- 주 업무 클래스의 객체 정보 제공 -->
+		<!-- → 『target』 -->
+		<property name="target" ref="cal"></property>
+
+		<!-- 보조 업무 클래스의 객체 정보 제공 -->
+		<!-- → 『interceptorNames』 -->
+		<property name="interceptorNames">
+			<list>
+				<value>aspect</value>
+			</list>
+		</property>
+
+	</bean>
+
+
+</beans>
+
+
