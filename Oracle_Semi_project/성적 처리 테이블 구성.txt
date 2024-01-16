@@ -1,0 +1,35 @@
+1. ID/PW
+
+아이디
+패스워드 PK?
+
+3. 교수자 계정 관리
+
+주민번호 뒷자리 - 패스워드 FK?	NUMBER? VARCHAR2?
+
+교수자 코드(교번) PK	VARCHAR2	EX) P001...
+교수자 이름 		VARCHAR2 
+배정된 과목명   	VARCHAR2
+과목 기간 		VARCHAR2	
+교재명			VARCHAR2
+강의실			VARCHAR2
+강의진행여부(강의 예정, 강의 중, 강의 종료)	VARCHAR2
+
+6. 학생 관리
+
+주민번호 뒷자리 - 패스워드 FK?	NUMBER? VARCHAR2?
+
+학생 코드(학번) PK	VARCHAR2	EX) S001...
+학생 이름		VARCHAR2 
+과정명			VARCHAR2 
+수강과목 (과목명)	VARCHAR2 
+수강과목 총점		NUMBER
+중도탈락(Y/N)		VARCHAR2 DEFAULT NULL(중도탈락X) (CHAR) 
+
+7. 성적 관리
+
+주민번호 뒷자리
+성적 처리(출결, 실기, 필기)
+과목별 배점
+중도탈락
+
