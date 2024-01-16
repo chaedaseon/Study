@@ -1,0 +1,283 @@
+■■■ JSP 액션 태그(JSP Action Tag) ■■■
+
+○ 개요
+
+   JSP 액션 태그는 클라이언트 혹은 서버에
+   어떤 동작을 수행하도록 명령을 내리는 태그로
+   JSP 페이지 안에서 자바 빈즈를 사용할 수 있도록 하는 액션 태그와
+   페이지를 활용할 수 있도록 하는 액션 태그로 나눌 수 있다.
+
+   - JSP 빈과 관련된 액션 태그
+     <jsp:useBean>, <jsp:setProperty>, <jsp:getProperty>
+
+   - JSP 페이지 모듈과 요청흐름 처리를 위한 액션 태그
+     <jsp:include>, <jsp:forward>, <jsp:param> 등
+
+
+○ 형식 및 구조
+
+   『<jsp:액션태그 속성="값">태그에 들어있는 내용</jsp:액션태그>』
+   『<jsp:액션태그 속성="값"/>』 ← 태그에 들어있는 내용이 없을 경우
+
+
+※ 스코프(scope)
+
+   JSP 액션 태그를 통해 생성된 객체는
+   그 객체가 사용될 수 있는 스코프 혹은 라이프사이클(Life Cycle : 생명주기) 
+   속성을 갖는데, 이것은 생성된 객체의 레퍼런스가 어디에서 사용될 수 있고,
+   언제 삭제될 것인지를 기술한다.
+
+   - page
+     생성된 객체는 단일 클라이언트의 요청에 의해 생성된 페이지 내에서
+     접근하여 사용될 수 있다.
+     생성된 객체는 실질적으로는 pageContext 에 저장된다.
+  
+   - request 
+     생성된 객체는 단일 클라이언트의 요청이 처리되는 동안에
+     접근하여 사용될 수 있다.
+     request 가 page 와 다른 점은 request 에서는 forward 나 include 를
+     사용해서 다른 페이지로 제어가 이동되는 경우에도
+     객체에 접근하여 사용할 수 있다.
+     생성된 객체는 실질적으로 HttpServletRequest 에 저장된다.
+
+   - session
+     생성된 객체는 사용자의 세션이 유지되는 어느 곳에서나
+     접근하여 사용될 수 있다.
+     생성된 객체는 실질적으로 HttpSession 에 저장된다.
+
+   - application
+     생성된 객체는 웹 응용프로그램의 라이프 사이클 동안에
+     웹 응용프로그램에 소속된 임의의 Servlet 과 JSP 에서
+     접근하여 사용될 수 있다.
+     생성된 객체는 실질적으로 ServletContext 에 저장된다.
+
+
+○ <jsp:param>
+
+   <jsp:param> 태그는 요청한 페이지로 정보를 전달할 때 사용하는 태그로
+   현재 페이지에서 요청한 페이지로 인자(parameter)와 인자값(value) 형태로 넘겨준다.
+ 
+   <jsp:param name="paramName" value="var" />
+
+   ※ 이 태그는 단독으로 사용하지 못하고
+      <jsp:include> 나 <jsp:forward> 태그의 내부에 기술하여 사용한다.
+
+   - name 속성
+     포함되는 JSP 페이지에 전달할 파라미터의 이름을 표시.
+   - value 속성
+     전달할 파라미터 값을 표시.
+     이 때, value 속성값으로 표현식을 사용하는 것도 가능하다.
+
+○ <jsp:forward>
+
+   <jsp:forward> 태그는 현재 머물고 있는 JSP 페이지에서
+   URL 로 지정한 특정한 페이지로 넘어갈 때 사용하는 태그로
+   현재 페이지에서 조건에 따라 서로 다른 페이지를 호출할 경우 사용된다.
+   이 태그의 특이한 점은 현재 페이지에 대한 URL 만 나타날 뿐
+   제어가 넘어간 특정 페이지의 URL 이 전혀 나타나지 않는다는 점이다.
+   클라이언트의 웹 브라우저 주소란에 보이는 URL 과
+   실제 브라우저에서 읽어들이고 있는 문서가 서로 다르기 때문에
+   사용자는 이러한 상황이 벌어지고 있는지를 감지할 수 없다.
+   그리고 제어가 넘어갈 때 request 내부 객체도 같이 전달된다.
+
+   <jsp:forward page="이동할페이지이름" />
+
+   - page 속성
+     이동할 페이지의 이름을 기술하며
+     page 속성의 값인 이동할 페이지의 이름은
+     웹 어플리케이션 상대 경로나, 웹 어플리케이션 절대 경로로 지정할 수 있고,
+     표현식을 사용할 수도 있다.
+
+   - <jsp:forward> 액션 태그에서
+     <jsp:param> 태그로 프로그램의 제어가 이동할 페이지에
+     파라미터 값을 전달할 수 있으며
+     전달받은 값은 『request.getParameter("파라미터이름")』으로 넘겨받는다.
+
+     <jsp:forward page="이동할페이지이름">
+	<jsp:param name="paramName1" value="var1" />
+	<jsp:param name="paramName2" value="var2" />
+     </jsp:forward>
+
+   - 단순히 page 속성에 지정된 페이지로 이동하는데 그치는 것이 아니라
+     이동할 페이지에 자신의 정보를 파라미터 형식으로 전달할 수 있는 것이다.
+
+     <jsp:forward page="/view.jsp" />
+     <%
+	  String url = "/To.jsp";
+     %>
+     <jsp:forward page="<%=url%>" />
+
+○ <jsp:include>
+
+   <jsp:include> 태그는 웹 페이지에서 공통된 페이지를 모듈화하여
+   레이아웃을 구성(작성)할 수 있도록 지원하는 태그이다.
+   include 디렉티브(<%@ include%>)와 함께
+   다른 페이지를 현재 페이지에 포함시킬 수 있는 기능을 가진 태그이다.
+   단, include 디렉티브는 단순하게 소스의 내용이 텍스트로 포함되지만
+   <jsp:include> 액션 태그는 포함시킬 페이지의 처리 결과를
+   포함시킨다는 점에서 차이를 갖는다.
+   포함되는 페이지는 html, jsp, Servlet 페이지 모두 가능하며
+   include 디렉티브는 주로 조각 코드를 삽입할 때 사용되고
+   <jsp:include> 액션 태그는 페이지를 모듈화 할 때 사용된다.
+   즉, 템플릿 페이지를 작성할 때 주로 사용된다는 것이다.
+   또한, <jsp:include> 액션 태그는 같은 request 기본 객체를 공유한다.
+
+   <jsp:include page="url" flush="false" />
+
+   - page 속성
+     현재 페이지에 결과가 포함될 대상 페이지의 이름
+   - flush 속성
+     출력 버퍼의 플러시 유무
+     포함될 페이지로 이동할 때 현재 페이지가 지금까지
+     출력 버퍼에 저장한 결과를 어떻게 처리할지를 결정한다.
+     flush 속성의 값은 false 로 설정하는 것이 일반적이다.
+     flush 속성의 값을 true 로 지정할 경우
+     일단 출력 버퍼의 내용을 웹 브라우저로 전송하게 되는데
+     이 때, 헤더 정보도 함께 전송된다.
+     헤더 정보가 일단 웹 브라우저로 전송되고 나면
+     이후 헤더 정보를 추가하더라도 결과가 반영되지 않는다.
+
+     <jsp:include page="url" flush="false">
+     	<jsp:param name="paramName1" value="var1" />
+	<jsp:param name="paramName2" value="var2" /> 
+     </jsp:include>
+
+
+※ 자바 빈즈(Java Bean)
+
+   JSP 페이지에 화면 출력 부분과 로직들이 섞여있는 형태로 작성할 경우
+   JSP 페이지를 이해하기 어렵고 디자이너와 협업도 어려워진다.
+   또한, JSP 페이지에 화면 출력 부분과 로직들이 혼재한 형태의 코드는
+   재사용을 하는 것도 어려워지게 된다.
+   JSP 에서는 자바로 작성한 클래스 중에
+   자바 빈즈 규약에 맞게 작성된 클래스를 JSP 에서 사용 가능하게 하였으며,
+   이를 통해 프레젠테이션(웹 디자이너 측) 부분과
+   비즈니스 로직(개발자 측)을 처리하는 부분을 분리하여 작성할 수 있다.
+   이렇게 함으로써 웹의 내용으로부터 웹의 표현 부분을 분리하게 되고
+   동적인 웹 페이지 제작을 위한 개발과 관리에 있어 명확한 분리가 가능하다.
+   또한, 동일한 기능이 페이지 구성이 달라서 반복적으로 사용되는 경우
+   웹 페이지를 효율적으로 작성, 수정하려면 반복적으로 사용되는 코드를
+   재사용할 수 있어야 한다.
+   빈은 이와 같은 효율적인 코딩 작업을 가능하게 한다.
+   
+   현재 개발되었거나 개발중인(작업중인) 프로그램들은 모두
+   MVC 기법에 의해 개발되고 있다.
+   MVC 기법은 프로그램을 모델(Model), 뷰(View), 컨트롤러(Controller)로
+   나누어 개발을 하는데...
+   Model 은 로직을 가지고 있는 부분으로 DB 와 연동하는 부분이고
+   View 는 사용자에게 제공하면 화면으로 UI(User Interface)에 해당하며,
+   Controller 는 View 와 Model 사이에서 흐름을 제어하는 개념이다.
+
+   JSP 페이지가 MVC 에서 View 에 해당하고
+   바로 이 View 를 모듈화 하는 것이 템플릿 페이지이며,
+   자바 빈즈는 Model 에 해당한다고 볼 수 있다.
+
+  
+○ <jsp:useBean> 
+
+   <jsp:useBean> 액션 태그는
+   자바 객체를 생성하거나 기존에 만들어져 있는 객체를 반환한다.
+
+   <jsp:useBean id="name" scope="page|request|session|application" typeSpec />
+
+   - id 속성
+     객체 인스턴스를 식별하는 이름으로 대소문자를 엄격하게 구분한다.
+     한 번 생성된 Bean 이 소멸할 때 까지는 같은 id 를 중복해서 사용할 수 없다.
+
+   - scope 속성
+     객체 참조 범위로 기본값(default)은 page 이다.
+     ·page 
+       객체 참조는 service() 호출이 종료될 때 소멸.
+     ·request
+       HttpServletRequest 객체가 소멸되지 않는 한 존재하며,
+       컨테이너에 의해 생성된 서블릿은
+       HttpServletRequest 의 setAttribute() 메소드를 이용하며
+       객체를 HttpServletRequest 에 바인딩시킨다.
+     ·session
+       객체는 클라이언트의 요청과 구별되며,
+       session 이 살아있는 동안에 존재하며,
+       컨테이너에 의해 생성된 서블릿은
+       HttpSession 의 putValue(String key, Object value) 메소드를 이용하여
+       객체를 HttpSession 에 바인딩시킨다.
+     ·application
+       가장 수명(생명주기)이 길다.
+       ServletContext 의 setAttribute() 를 통해 객체를 ServletContext 에 바인딩시킨다.
+
+   - typeSpec 속성
+     class="class_name" | 
+     class="class_name" type="type_name" | 
+     type="type_name" class="class_name" |
+     beanName="bean_name" type="type_name" | 
+     type="type_name" beanName="bean_name" | 
+     type="type_name"
+
+     ·class
+       완전한 형태의 클래스 이름으로
+       beanName 이 정의되어 있지 않은 상황이라면 반드시 정의해야 한다.
+     ·beanName
+       java.beans.Beans 클래스의 instantiate() 메소드에 사용할 bean 이름으로
+       type 과 beanName 을 지정한 경우에는 class 를 생략할 수 있다.
+       주로 class 인자를 쓰지 않을 경우 사용한다.
+       내부적으로 컨테이너는 id 와 scope 를 이용해서 객체를 찾는다.
+       이 과정에서 만약 찾지 못할 경우 현재 클래스 로더로 instantiate() 
+       메소드를 호출하는데, 이 때 bean 의 이름을 인자로 전달한다.
+       이 인스턴스의 생성이 실패하게 되면 예외가 발생한다.
+     ·type
+       클래스의 형(Type)을 지정하는, 생략 가능한 특성이다.
+       객체가 이 특성으로 지정된 형(Type)이 아닐 경우
+       ClassCastException 예외가 발생하게 된다.
+
+   <jsp:useBean id="name" scope="page" typeSpec>
+       <jsp:setProperty name="bean_name" prop_expr />
+       <%
+           // 스크립릿을 이용하여 다른 속성 값을 호출하는 기능을 가진
+           // 함수를 호출할 수도 있다.
+       %>
+   </jsp:useBean>
+
+
+○ <jsp:setProperty>
+
+   <jsp:setProperty> 액션 태그는 자바 빈에 속성 값을 할당한다.
+   name 속성에 기술된 이름에 해당하는 bean 클래스는
+   <jsp:useBean> 액션 태그를 이용해서 이 액션이 나타나기 전에 미리 정의되어야 한다.
+
+   <jsp:setProperty name="bean_name" prop_expr />
+
+   - name 속성
+     <jsp:userBean> 액션 태그에 의해 정의된 bean 인스턴스 이름
+
+   - prop_expr
+     property="*" |
+     property="property_name" |
+     property="property_name" param="parameter_name" | 
+     property="property_name" value="parameter_value" 
+
+     ·property
+       값을 설정하고자 하는 bean 속성의 이름으로
+       『"*"』으로 설정하면 ServletRequest 안의 모든 인자들 중
+       bean 속성과 데이터타입이 일치하는 것을 찾아서
+       각각의 속성들을 각각의 인자들의 값으로 설정한다.
+       값이 『""』인 경우 속성은 변하지 않는다.
+     ·param
+       bean 속성에 설정하고자 하는 값을
+       파라미터에서 지정하고자 할 경우 사용한다.
+     ·value
+       bean 속성에 설정할 값을 지정하며
+       하나의 <jsp:setProperty> 액션 태그가 param 과 value 를 동시에 가질 수 없다.
+
+○ <jsp:getProperty>
+
+   <jsp:getProperty> 액션 태그는 bean 의 속성 값을 얻는데 사용한다.
+   bean 의 속성 값을 얻어 String 으로 변환한 다음 출력 스트림으로 보낸다.
+
+   <jsp:getProperty name="name" property="property_name">
+
+   - name 속성
+     속성을 얻고자하는 bean 의 인스턴스 이름
+
+   - property 속성
+     얻고자 하는 속성의 이름
+
+
+

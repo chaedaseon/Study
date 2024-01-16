@@ -1,0 +1,190 @@
+■■■ 모델2 기반의 MVC 패턴 ■■■
+
+○ 개요
+
+   MVC 패턴에서 MVC 는 각각 Model, View, Controller 를 의미하는 것으로
+   Model 은 데이터 또는 기본 기능(업무 로직)을 말하며,
+   View 는 유저 인터페이스를 말한다.
+   이 두 가지는 시스템 개발에 있어서 반드시 필요한 부분이다.
+   
+   MVC 패턴은 C 패턴이라고 불러도 괜찮을만큼
+   한 마디로 말해 Controller 라는 레이어 계층을 두는 것이 가장 중요하다.
+   즉, Graphical User Interface 를 활용하는 과정에서
+   Model 과 View 계층 사이에
+   Controller 계층을 만들어 사용할 수 있도록 하는 것이다.
+
+   이렇게... 필수적인 두 계층 사이에
+   필수적이지 않은 다른 계층을 두는 이유는
+   두 계층(Model 과 View)이 직접적으로 결합되는 것을 막는 것으로
+   Controller 계층은 Model 계층과 View 계층 사이에서 결합을 막아준다.
+   Model 과 View 의 직접적인 결합은 이 둘을 함께 바뀌도록 만들어 버린다.
+   이것을 Controller 계층이 막아준다는 것이다.
+   따라서... Controller 계층의 로직은 간단하게 설계해야 한다.
+
+
+○ Web Application 에서의 MVC 구조
+ 
+   JSP 는 로직과 프레젠테이션을 알맞게 구분하기 위해
+   Model2 구조를 지원하고 있으며,
+   Model2 구조의 개념과 구현 방법, 장단점 등을 이해하고
+   적용시키는 것이 중요하다.
+   
+   - Model1 구조
+     모델1 구조는 일반적으로 JSP 페이지만으로 구성되어 이쓴 구조를 말한다.
+     즉, JSP 페이지에서 동적인 부분(로직 부분)은 스크립릿으로 처리하고
+     그 외 나머지 부분은 템플릿으로 처리하는 구조인 것이다.
+     모델1과 모델2의 가장 큰 차이점은
+     클라이언트 요청의 진입 지점이 다르다는 것이다.
+
+     ·장점
+       개발 시간이 단축된다.
+       단순한 페이지의 흐름을 바탕으로 MVC 구조에 대한
+       추가적인 이해가 필요하지 않다.
+
+     ·단점
+       HTML, Javascript, JSP 로직이 한 페이지에 작성되어
+       어플리케이션이 복잡해질수록 유지보수가 힘들어진다. (거의 불가능)
+       디자이너와 개발자 사이에 밀접하고 원활한 소통이 요구된다.
+
+   - Model2 구조
+     모델2 구조는 JSP 와 Servlet 그리고 JavaBean 컴포넌트를 함께 사용하며,
+     모델2에서 클라이언 요청의 진입하는 지점은 컨트롤러이며,
+     대부분의 웹 어플리케이션의 컨트롤러는 Servlet 이 담당한다.
+
+     ·장점
+       로직과 프리젠테이션의 분리로 인해 어플리케이션이 명료해지고
+       유지보수나 확장이 용이하다.
+       디자이너와의 작업이 분리되어 있기 때문에
+       업무 진행이 원활하고 책임의 소재가 명확하다.
+
+     ·단점
+       개발 초기에 아키텍처 디자인을 위한 분석... 구성... 등의
+       시간 소요로 개발 기간이 전체적으로 늘어난다.
+       MVC 구조에 대한 개발자들의 이해를 필요로하며,
+       이에 대한 이유로 사전 교육 기간 등이 소요될 수 있다.
+
+
+※ MVC(Model2) 구조
+
+   - 모델(Model)
+     비즈니스 로직과 관련된 부분만 처리
+     데이터베이스 관련 로직 구현
+     Java Beans
+
+   - 뷰(View)
+     사용자에게 알맞은 화면을 보여주는 역할을 수행
+     JSP
+
+   - 컨트롤러(Controller)
+     어플리케이션의 흐름 제어나 사용자의 요청 구현
+     사용자 인증, 보안 설정, 전체 어플리케이션에 공통으로 영향을 주는 요소 구현
+     사용자의 요청에 대해 알맞은 모델 사용
+     사용자에게 보여줄 뷰 선택
+     Servlet
+
+
+※ MVC(Model2) 구현
+
+   - JSP 기반의 웹 어플리케이션에서 Controller 에 포함되어야 할 작업
+     ·웹 브라우저(클라이언트)의 요청을 받는다.
+     ·웹 브라우저(클라이언트)가 요구하는 작업을 분석한다.
+     ·요청한 작업을 처리하는 비즈니스 로직을 수행하는
+       모델(Model:JavaBean)을 사용한다.
+     ·처리결과를 request 또는 session 에 저장한다.
+     ·적절한 뷰(View:JSP)를 선택하여
+       해당 뷰로 포워딩(forwarding)한다.
+
+   - JSP 기반의 웹 어플리케이션에서 View 에 포함되어야 할 작업
+     ·서블릿(Servlet)에서 dispathcer.forward(request, response) 로
+       해당 JSP 페이지와 request, response 를 공유한 경우
+       해당 JSP 페이지에서 request.getAttribute("result") 와 같은 기능을 사용하여
+       결과를 화면에 표현할 수 있도록 처리한다.
+
+   - JSP 기반의 웹 어플리케이션에서 Model 에 포함되어야 할 작업
+     ·컨트롤러(Controller)의 요청을 받는다.
+     ·비즈니스 로직을 처리한다.
+     ·처리한 비즈니스 로직의 결과를 컨트롤러(Controller)로 반환한다.
+
+
+-------------------------------------------------------------------------------------------------------------
+
+○ MVC 관련 실습 1
+
+   - prj : WebApp24
+
+     ·web.xml		→ URL 매핑
+     ·MVCBegin.java	→ Controller 역할 (서블릿 클래스)
+     ·MVCDegin.jsp	→ View 역할 (JSP 페이지)
+
+   - 사용자 최초 요청 주소
+http://localhost:3306/WebApp24/mvcbegin
+
+
+
+-------------------------------------------------------------------------------------------------------------
+
+○ MVC 관련 실습 2
+
+   - prj : WebApp25
+
+     ·web.xml		→ URL 매핑
+     ·MVCTest01.java	→ Controller 역할 (서블릿 클래스)
+     ·MVCTest01.jsp	→ View 역할 (JSP 페이지)
+
+   - 사용자 최초 요청 주소
+http://localhost:3306/WebApp25/mvctest01
+
+
+-------------------------------------------------------------------------------------------------------------
+
+○ MVC 관련 실습 3
+
+   - prj : WebApp25
+
+     ·web.xml			→ URL 매핑
+     ·MVCTest02.java		→ Controller 역할 (서블릿 클래스)
+     ·MVCTest02Model.java	→ Model 역할 (일반 자바 클래스)	++(추가!)
+     ·MVCTest02.jsp		→ View 역할 (JSP 페이지)
+
+   - 사용자 최초 요청 주소
+http://localhost:3306/WebApp25/mvctest02
+
+
+-------------------------------------------------------------------------------------------------------------
+
+○ 폼(form) 데이터 전송 및 수신 과정 비교
+
+   ※ MVC 패턴 적용 이전 단계와 MVC 패턴 적용 이후 단계를
+      반드시 비교하여 이해할 수 있도록 할 것.
+
+   - A
+     ·prj : WebApp26
+
+     ·HelloSend01.html
+     ·HelloReceive1.jsp
+
+     ·사용자 최초 요청 주소
+http://localhost:3306/WebApp26/HelloSend01.html
+
+   - B
+     ·prj : WebApp27
+
+     ·HelloSend02.html
+     ·HelloReceive02.java
+     ·web.xml
+
+     ·사용자 최초 요청 주소
+http://localhost:3306/WebApp27/HelloSend02.html
+
+   - C
+     ·prj : WebApp28
+
+     ·HelloSend03.html
+     ·HelloSend03Controller.java
+     ·HelloReceive03.jsp
+     ·HelloReceive03Controller.java
+     ·HelloReceive03Model.java
+     ·web.xml
+
+     ·사용자 최초 요청 주소
+http://localhost:3306/WebApp28/hello

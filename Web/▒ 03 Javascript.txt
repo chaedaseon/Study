@@ -1,0 +1,109 @@
+■■■ Javascript 개요 및 기본문법 ■■■
+
+○ 개요
+
+   컴파일 과정이 필요없거나 처리 과정이 적은 프로그램에 유리한 스크립트 언어로
+   다른 언어에 비해 소스 코드의 수정 및 유지보수가 간편한 편이다.
+   HTML 코딩에서 자바스크립트 소스의 명시만으로 웹 브라우저가 자동 실행한다.
+
+   자바스크립트는 웹 페이지에서 가장 많이 사용되는 스크립팅(Scripting) 언어로
+   스크립팅(Scripting) 언어는 크게 나누면
+   자바스크립트나 DHTML, Visual Basic 등과 같은 브라우저 스크립팅(Browser Scripting),
+   JSP, ASP, PHP 와 같은 서버 스크립팅(Server Scripting) 언어로 구분할 수 있다.
+
+   특히 자바스크립트는 서버 스크립팅(Server Scripting) 언어와 연동되어
+   입력란에 입력한 값이 제대로 된 값인지의 여부 등을 체크하는
+   상호작용(Interactive)적 요소와 웹 페이지에 동적(Dynamic)인 효과 등을
+   적용하는 부분에 사용되며 그 밖에도 많은 기능을 사용자가 추가하여
+   사용하는 매우 중요한 요소라고 할 수 있다.
+
+   ※ Javascript 는 HTML 문서에
+      상호작용(Interactive)하는 요소와 동적(Dynamic)인 요소를
+      추가하기 위해 사용하는 언어이다.
+
+
+○ HTML 문서에 Javascript 추가
+
+   1. Inline Javascript(HTML Tag 속에 지정하여 사용)
+      <a href="javascript:location.href='http://www.naver.com'">네이버</a>
+
+   2. Embeded Javascript 와 Script Block(Script Block 속에 일괄 지정하여 사용)
+      <script type="text/javascript">
+	  document.write("어쩌구 저쩌구");
+      </script>
+
+      ※ document 는 HTML 문서 Object 를 의미하며
+         write() 함수는 document Object 에 출력하는 것을 의미한다.
+
+   3. Linked Javascript(외부 파일을 링크하여 여러 개의 파일에 일괄 지정하여 사용)
+      <script type="text/javascript" src="url경로지정"></script>
+
+
+○ Javascript 의 기초 구문과 주요 데이터타입
+
+   1. Javascript 의 주석문(comment)
+      라인 단위 주석문의 경우 2개의 slash(『//』)를 주석문 앞에 붙여 사용하고
+      블럭 단위 주석문의 경우 『/* 여러줄 주석 */』과 같이 사용한다.
+
+   2. Javascript 의 명령 line 처리
+      2개 이상의 script 명령을 사용할 경우 『;(세미콜론)』으로 구분해 줄 수 있도록 한다.
+      (개행 역시 구분자의 역할을 수행하지만 『;』을 붙여서 사용할 수 있도록 한다.)
+
+   3. Javascript 에 사용되는 주요 데이터타입
+      정수 : 0 ~ 9 사이의 각 자릿수에 해당하는 음수와 양수
+             따옴표 속에 넣지 않는다.
+      실수 : 0 ~ 9 사이의 각 자릿수에 해당하는 음수와 양수를 포함한 부동 소수.
+             따옴표 속에 넣지 않는다.
+      Boolean(true or false) : true 와 false의 논리형
+      String(문자열) : 사용할 수 있는 모든 문자를 의미하며
+                       따옴표(『" "』) 속에 넣어서 사용한다.
+
+
+○ Javascript 배열
+
+   1. 1차원 배열 선언 - 크기 지정 없이 선언 가능
+
+      var 변수명 = new Array();
+      변수명[0] = 값1;
+      변수명[1] = 값2;
+      변수명[2] = 값3;
+      ...
+      
+      var 변수명 = new Array(값1, 값2, 값3, ...);
+   
+      var 변수명 = [값1, 값2, 값3, ...];
+
+
+   2. 2차원 배열 선언 - 크기 지정 없이 선언 가능
+
+      var 변수명 = new Array();
+      변수명[0] = new Array();
+      변수명[1] = new Array();
+      변수명[2] = new Array();
+      ...
+
+      변수명[0][0] = 값1;
+      변수명[0][1] = 값2;
+      변수명[0][2] = 값3;
+      ...
+      
+      var 변수명 = new Array(new Array(), new Array(), new Array(), ...);
+      변수명[0][0] = 값1;
+      변수명[0][1] = 값2;
+      변수명[0][2] = 값3;
+      ...
+
+      var 변수명 = [[값1, 값2, 값3, ...], [], [], ...];
+
+
+   3. 문자열.split(구분자)
+
+      var str = "1 2 3 4 5";
+      var arr = str.split(" "); //-- 1차원 배열 반환
+      for (var n=0; n<arr.length; n++)
+      {
+           document.getElementById("result").value += arr[n] + " ";
+      }
+      //--==>> 1 2 3 4 5 
+
+

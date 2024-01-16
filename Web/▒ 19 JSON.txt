@@ -1,0 +1,190 @@
+■■■ JSON(JavaScript Object Notation) ■■■
+
+○ JSON(JavaScript Object Notation) 이란?
+   - JavaScript Object Notation, RFC 4627
+   - JavaScript 구문 형식을 따르며, 언제나 플랫폼에 독립적
+   - 미디어 타입 : 'application/json'
+   - 표현 가능한 자료형
+     object, array, string, number, boolean, null
+
+
+○ 개요
+   JSON(JavaScript Object Notation)은
+   네트워크 상에서(대표적으로 인터넷 상에서) 데이터를 주고 받을 때,
+   그 데이터를 표현하는 방법이다.
+   자료의 종류에 큰 제한은 없으며
+   특히 프로그램의 변수값을 표현하는데 적합하다.
+
+   JSON(JavaScript Object Notation)은 경량 데이터 교환 방식으로
+   사람이 읽고 쓰기에 용이하며,
+   기계가 분석하고 생성하는 과정도 비교적 단순하고 용이하다.
+   Javascript Programming Language, Standard ECMA-262 3rd Edition
+   의 일부에 토대를 두고 있으며,
+   JSON 은 완벽하게 언어로부터 독립적이지만
+   C 계열 언어, 자바, 자바스크립트 등 다수 개발자들에게
+   매우 친숙한 관습을 사용하는 텍스트 형식이다.
+   이와 같은 특성들로 인해 JSON 은 이상적인 데이터 교환 언어로 사용되고 있다.
+
+
+※ JSON 은 문자열 형식이기 때문에 네트워크 전송 시 유리하다. (유용하다.)
+   데이터에 접근하기 위해서는 Native JSON 객체로 변환해야 한다.
+   (Javascript 는 JSON 전역 객체를 통해 문자열과 JSON 객체의 상호 변환을 지원한다.)
+
+
+※ 문자열에서 Native Object 로 변환하는 것을 파싱(Parsing)이라 한다.
+   네트워크를 통해 전달할 수 있게 객체를 문자열로 변환하는 과정은
+   문자열화(Stringfication)라고 한다.
+
+
+○ 특징(※ JSON 의 특징은... 곧 XML 의 단점 → 데이터의 크기, 속도)
+   ① 경량 데이터 교환 방식
+   ② 데이터 표현이 단순하고 직관적
+   ③ Javascript 에서 eval() 을 통해 parsing 가능
+      - 라이브러리 필요 없음(예외의 경우도 존재함)
+      - 크로스 브라우저 호환 문제 없음
+
+
+○ 구조
+   JSON 은 두 개의 구조를 기본으로 두고 있다.
+   - name / value 형태의 쌍으로 collection 타입
+     다양한 언어들에서 object, record, struct(구조체), hashtable,
+     키가 존재하는 list, 연상 배열 등으로 실현되었다.
+   - 값들의 순서화된 리스트
+     대부분 언어들에서 array, vector, list, sequence 등으로 실현되었다.
+
+
+○ 참조 페이지
+   JSON 공식 홈페이지
+   - http://www/json.org
+
+
+○ JSON 의 기본 문법
+   ※ http://www.json.org/json-ko.html → 설명문서 참조
+   ① 표현하고자 하는 데이터는 『{ }』로 감싼다.
+   ② 데이터는 『name:value』형식으로 표현한다.
+   ③ 각각의 값들은 『,』로 구분한다.
+   ④ name 은 『""』로 감싸거나 그냥 사용해도 무방하다.
+      - 『"name":"채다선"』 또는 『name:"채다선"』
+   ⑤ value 는 string, number, 배열, true, false, null 등
+      - string 은 『""』로 감싼다.
+      - 배열은 『[]』로 값들을 감싼다.
+
+   1) 프로퍼티 ↔ 값
+      var obj = 
+      {
+          "프로퍼티명" : "값"
+      }
+
+   2) 메소드
+      var obj = 
+      {
+          "메소드명" : function() {...}
+      }      
+
+   3) 메소드(인수)
+      var obj = 
+      {
+          "메소드명" : function(인수) {...}
+      }
+
+
+○ JSON 의 데이터 타입(자료형)
+   - string
+   - number
+   - boolean
+   - null
+   - array
+   - object
+
+   ※ JSON Object 의 각 프로퍼티 자료형은
+      『typeof』를 통해 확인이 가능하다.
+
+   - string
+     ·string 은 큰 따옴표 안에 둘러싸인 zero 이상의 유니코드 문자들의 조합이며,
+       backslash escape 가 적용된다.
+     ·하나의 문자(character)도 하나의 문자열(character string)로 표현된다.
+     ·문자열은 반드시 이중인용부호 『""』로 감싸준다.
+     ·모든 문자를 \uxxxx (\u에 이어 4자이의 16진수로 표현한 unicode)로 표현 가능.
+       "가나다"			→ 단순 문자열
+       "\uAC00\uB098\uB2E4"	→ escape 표기한 "가나다" 문자열
+       "foo\\bar\n"		→ backslash(\\) 와 개행(\n)
+
+   - number
+     ·number 는 8진수나 16진수 형식을 사용하지 않는다.
+     ·정수, 실수 모두 처리가 가능하다.
+     ·정수와 부동소수점 포함 10진 표기로 한정한다.
+       10			→ 정수 값
+       -100			→ 음의 정수 값
+       30.1			→ 실수 값
+       1.0e-10			→ 지수 표현 값
+
+   - boolean
+     ·boolean 은 true / false 데이터를 사용한다.
+     ·true, false 모두 소문자 기술.
+     ·C 나 JAVA 에서 사용하는 boolean 형과 비슷하다.
+
+   - null
+     ·null 은 어떤 특정 형태를 담기 이전의 상태로... object 로 취급받게 되며,
+       데이터가 할당되면(담기면), 할당된 데이터에 따라 다시 구분된다.
+     ·반드시 『null』이라고 소문자 기술.
+
+   - array
+     ·array 는 데이터들이 순서화된 collection 이다. (순서를 가진 값의 집합)
+     ·array 는 『[』로 시작해서 『]』로 끝내어 표현한다. (『[]』로 감싸서 표현)
+     ·『,』(컴마)로 데이터들을 구분한다.
+     ·1차원 형태, 2차원 형태 모두 존재한다.
+       ["foo", "bar", "baz"]			→ 문자열의 배열
+       [{"foo":"bar"}, {"key":"value"}]		→ 오브젝트 배열
+       [[10, 20], [40, 50]]			→ 배열의 배열
+       []					→ 빈 배열
+       [{"foo":"bar"}, "baz", 100, true, ,null]	→ 복잡한 배열(→ 가능)
+
+   - object
+     ·object 는 name 과 value 쌍들의 비순서화된 SET 이다.
+     ·object 는 『{』로 시작하고 『}』로 끝내어 표현한다. (『{}』로 감싸서 표현)
+     ·각 name 뒤에 『:』(콜론)을 붙인다. (이름과 값은 『:』로 구분)
+     ·『,』(컴마)로 쌍들 간을 구분한다. (『,』로 멤버 구분)
+     ·이름과 값의 집합, 이름은 항상 문자열, 값은 JSON 의 자료형 가능
+       {
+           "name":{"first":"John", "last":"Doe"}
+           , "blog":"http://bolg.example.com"
+           , "age":52
+           , "interests":["Web", "XML", "REST"]
+       }
+
+
+○ 일시(날짜)
+   - JSON 에서 기본적으로 제공하는 자료형에 일시(날짜)는 없음.
+   - 개발자 스스로 규칙을 정해서 사용.
+   - 가장 단순한 방법으로는 UNIX 시간을 수치로 표현.
+     (1234567890 → 2009년 2월 14일 8시 31분 30초)
+   - UNIX 는 타임존을 다루지 못함.
+     타임존이 필요할 시 Javascript 의 Date 객체 toString() 메소드 이용.
+     ("Mon Nov 01 2023 05:43:35 GMT+0900" → Firefox 3.6)
+     ("Mon Nov 01 05:43:35 GMT+0900 2023" → IE 8)
+   - Javascript 는 브라우저 별로 출력 내용이 달라지기 때문에
+     표준적인 ISO-8601 사용 권장
+     ("202305-12T14:41:15+0900")
+
+
+○ 링크
+   - 단순히 URI 를 문자열로 표현
+     {
+         "href":"http://example.com/foo/bar"
+     }
+   - URI 는 상대 URI 가 아닌 절대 URI 로 표현 권장
+   - 멤버 이름을 링크를 나타내는 값으로 지정하여 표현 권장
+
+
+※ 크로스 도메인 통신
+   - 불특정 다수의 서버에 엑세스 하는 것을 『크로스 도메인 통신』이라 함
+   - AJAX 에서 사용하는 XMLHttpRequest 라는 Javascript 모듈은
+     보안상 제한으로 하나의 서버와 통신 가능
+   - <script> 요소를 이용해 크로스 도메인 통신 가능
+   - JSONP(JSON with Padding) 은 브라우저의 <script> 요소를 이용해
+     크로스 도메인 통신 구현.
+   - 클라이언트가 지정한 콜백 함수명을 래핑하여 크로스 도메인 통신 구현.
+
+
+
+		

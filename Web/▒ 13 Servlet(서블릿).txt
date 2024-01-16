@@ -1,0 +1,47 @@
+■■■ Servlet(서블릿) ■■■
+
+0. 웹 어플리케이션을 구축하기 위한 웹 프로그램을 구성하는 언어의 한 종류.
+   (JAVA 기반)
+
+1. JSP 에서 정적인 부분을 담당하고, Servlet 에서는 동적인 처리를 위한
+   부분으로 사용되어 보다 효율적인 웹 어플리케이션을 구축할 수 있다.
+   - JSP 		→ 단점. MVC 패턴을 적용하기 힘들다.
+   - Servlet 		→ 단점. 웹 페이지(view) 작성이 번거롭고 복잡하다. (불편)
+   - Servlet + JSP 	→ MVC 패턴 적용 및 웹 페이지(view)를 보다 편리하게 작성.
+                           단점. 구조가 복잡해지게 된다.
+
+2. JSP 는 내부적으로 Web Container 가 Servlet 으로 변경시켜준다.
+
+3. WEB-INF 는 환경 설정 파일이 저장되는 곳
+   (→ 외부에서는 접근 불가 / 금지)	 check~!!!
+   - lib : 라이브러리 파일을 저장(ojdbc6.jar, jstl.jar 등)
+   - J2EE (Enterprise급)
+   - J2SE (Standard급)
+   - classes : class 파일이 저장(servlet)
+     『classes > com > util > MyUtil.class』
+     원래는 이렇게 만들어야 하지만 이클립스가 자동으로 연결
+     실제 위치는
+     『C:\WebStudy\.metadata\.plugins\org.eclipse.wst.server.core
+          \tmp0\work\Catalina\localhost\WebApp20\org\apache\jsp』
+      *.jar : java
+      *.war : web(프로젝트 아래 모든 것을 압축할 때)
+      *.ear : jar + war
+      web.xml : context path 의 환경 설정
+
+4. 『init()』과 『destroy()』는 단 한 번 호출되며
+   『service()』는 클라이언트의 요청이 있을 때 마다 호출된다.
+   이제는 JSP 를 『service()』메소드 내부에 코딩하는 것과 같다.
+
+5. 『GenericServlet』이나 『HttpServlet』을 활용한다.
+
+6. URL 패턴을 지정하는 방법은 크게 3가지이다.
+   - 『/a』
+   - 『/*』
+   - 『.do』
+
+7. web.xml 을 수정하면 서버를 꼭 재구동한 이후에 실행해야 한다.
+
+8. 지금까지는
+   JSP(입력) → JSP(처리, 결과) 였으나
+   JSP 와 함께 Servlet 을 다루게 된 이후에는
+   JSP(입력) → Servlet(결과를 위한 처리) → JSP(결과) 방식으로 구성된다.

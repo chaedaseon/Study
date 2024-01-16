@@ -1,0 +1,67 @@
+■■■ DBCP(DataBase Connection Pool) ■■■
+
+○ 커넥션 풀 (Connection Pool) 기법이란, 데이터베이스와 연결된 커넥션을
+   미리 만들어 풀(pool) 속에 저장해 두고 있다가 필요할 때에 커넥션을
+   풀에서 꺼내어 가져다 쓰고 다시 풀에 반환하는 기법을 말한다.
+
+○ 데이터베이스를 연결하기 위한 커넥션(Connection)은 객체이다.
+   이 객체는 새롭게 만들어지는 과정에서 많은 시스템 자원을 요구하게 된다.
+   객체가 메모리에 할당되고, 객체에 사용할 여러 자원들에 대한 초기화 작업
+   그리고 객체가 더 이상 필요하지 않게 되었을 때 메모리를 회수하는 과정
+   등에서 많은 비용이 발생하고 요구되는 것이다.
+
+○ JSP 페이지를 생성할 때 마다 커넥션을 생성해서 사용하게 되면
+   커넥션을 생성하고 닫는데 많은 시스템 자원을 요구하게 되기 때문에
+   동시 접속자 수가 많은 웹 사이트의 경우 전체 성능을 떨어뜨리는 원인이 될 수 있다.
+   이러한 성능 저하 문제를 해결하기 위해 사용하는 일반적인 방식이
+   커넥션 풀(Connection Pool) 기법인 것이다.
+
+○ DBCP를 사용하기 위해서는 기본적으로 세 개의 패키지가 필요하다.
+   - Jakarta-Commons DBCP 1.2.1 (commons-dbcp-1.2.1.jar)
+   - Jakarta-Commons Collections 3.1 (commons-collections-3.1.jar)
+   - Jakarta-Commons Pool 1.2 (commons-pool-1.2.jar)
+
+   ※ 하지만, 톰캣 6.x 부터 톰캣 서버 내부에 기본적으로 탑재되어 제공되기 때문에
+      (경로 : Tomcat Root\lib 또는 Tomcat Root\common\lib)
+      (파일 : tomcat-dbcp.jar)
+      다른 파일을 추가하거나 변경하지 않아도 무방하다.
+
+○ 실습 환경 설정
+
+   1. Eclipse > Project Explorer > Servers > Tomcat ... > context.xml
+      파일 접근 및 열기
+   2. 해당 파일의 맨 아래에 즉, 『</Context>』 닫히기 전에...
+
+      <Resource name="jdbc/myOracle" auth="Container"
+                type="javax.sql.DataSourse"
+                driverClassName="oracle.jdbc.driver.OracleDriver"
+                url="jdbc:oracle:thin:@localhost:1521:xe"
+                username="사용자계정명" password="계정패스워드"
+                maxActive="20" maxIdle="10" maxWait="-1">
+      </Resource>
+
+      내용을 추가한다.
+
+      - name
+        : 리소스 식별을 위한 이름
+      - auth
+        : 해당 리소스를 사용하게 되는 주체
+      - type 
+        : 리소스의 타입(패키지 경로 포함)
+      - driverClassName
+        : 사용할 JDBC Driver 의 클래스 이름
+      - url
+        : JDBC Driver 에 의해 연결할 Connection 에 대한 URL
+      - username 
+        : Connection 을 연결할 사용자 이름(오라클 사용자)
+      - password
+        : Connection 을 연결할 사용자 이름에 대한 비밀번호(오라클 암호)
+      - maxActive
+        : Connection Pool 이 제공할 최대 Connection 의 갯수
+          (사이트 최대 커넥션 사용량을 기준으로 지정.
+           동시 접속자 수를 감안하여 지정.)
+      - maxIdle
+        : 사용되지 않고 풀(pool)에 저장할 수 있는 최대 Connection 의 갯수
+      - maxWait
+        : 대기 시간. 단위는 1/1000초.
+          0 보다 작게 설정할 경우 무한히(응답을 받을 때 까지) 대기.
