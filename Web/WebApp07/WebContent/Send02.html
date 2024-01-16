@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Send02.html</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<style type="text/css">
+
+	.btn {font-weight:  bold; font-size: 13pt;}
+	.txt1 {margin-left: 33px;}
+	
+</style>
+</head>
+<body>
+
+<!--
+	○ 데이터 송수신 실습 02
+	   - 이름과 성적 데이터를 입력받는 html 페이지를 구성한다.
+	   
+	     이름		[ textbox ] 	← 박가영
+	     국어점수	[ textbox ] 	← 90
+	     영어점수	[ textbox ] 	← 80
+	     수학점수	[ textbox ] 	← 70
+	     
+	     < 전송 > < 취소 >
+	     
+	   - 내용 입력 후 전송 버튼 클릭 시
+	     『박가영님, 성적 처리가 완료되었습니다.
+	       회원님의 점수는 국어:90점, 영어:80점, 수학:70점 입니다.
+	       총점은 240점, 평균은 80.0점 입니다.』
+	     라는 내용을 출력하는 JSP 페이지(Receive02.jsp)를 구성하여
+	     데이터를 전달할 수 있도록 한다.
+	     
+	   - 사용자 최초 요청 주소는 http://localhost:3306/WebApp07/Send02.html 로 한다.
+	   
+	 ○ Send02.html
+	    Receive02.jsp
+-->
+
+<div>
+	<h1>데이터 송수신 실습 02</h1>
+	<hr>
+</div>
+
+<div>
+	<form action="Receive02.jsp" method="post">
+		<br>
+		이름 <input type="text" name="name" class="txt1" placeholder="이름 입력"><br>
+		국어점수 <input type="text" name="kor" class="txt" placeholder="0 ~100"><br>
+		영어점수 <input type="text" name="eng" class="txt" placeholder="0 ~100"><br>
+		수학점수 <input type="text" name="mat" class="txt" placeholder="0 ~100"><br>
+		<br>
+		<button type="submit" class="btn" style="width:160px;">전송</button>
+		<button type="reset" class="btn" style="width:160px;">취소</button>
+	</form>
+</div>
+
+</body>
+</html>
