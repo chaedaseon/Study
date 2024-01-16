@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<!-- ※ 스프링이 제공하는 환경 설정 XML 파일 샘플 -->
+	<!--    → 스프링이 생성하고 관리해야 할 객체들에 대한 정보 전달 -->
+	
+	<!-- RecordImpl1 (Record) 클래스에 대한 객체 정보 전달 -->
+	<bean id="record1" class="com.test.spr.RecordImpl1"></bean>
+
+	<!-- RecordImpl2 (Record) 클래스에 대한 객체 정보 전달 -->
+	<bean id="record2" class="com.test.spr.RecordImpl2"></bean>
+
+	<!-- RecordViewImpl (RecordView) 클래스에 대한 객체 정보 전달 -->
+	<bean id="view" class="com.test.spr.RecordViewImpl">
+	
+		<!-- RecordImpl1 또는 RecordImpl2 객체에 대한 DI 설정 정보 전달 -->
+		<!-- 『property』 엘리먼트는 setter 메소드에 대한 정의 -->
+		<!-- 즉, 『setXxx()』 메소드인 경우 『property name="xxx"』 -->
+		<!-- 와 같은 형식으로 기술하여 설정하게 된다. -->
+		<property name="record">
+			
+			<!-- 『ref』 엘리먼트에 의해 DI 객체에 대한 참조 지정 -->
+			<ref bean="record2"/>
+		
+		</property>		
+		
+		<!-- ※ 위 구문은(line 23 ~ 28) -->
+		<!--    『<property name="record" ref="record1"></property>』 -->
+		<!--    와 같은 형태로 작성해도 된다. -->
+	
+	</bean>
+	
+	
+	
+</beans>
+
