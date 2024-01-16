@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>WebApp00</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- Test1 클래스 → Servlet 구성 ① -->
+  <!-- 
+  <servlet>
+  	<servlet-name>lys</servlet-name>
+  	<servlet-class>com.svt.Test1</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>lys</servlet-name>
+  	<url-pattern>/test1</url-pattern>
+  </servlet-mapping>
+   -->
+   
+  <!-- Test1 클래스 → Servlet 구성 ② -->
+  <!-- 
+  <servlet>
+  	<servlet-name>lys</servlet-name>
+  	<servlet-class>com.svt.Test1</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>lys</servlet-name>
+  	<url-pattern>/test1</url-pattern>
+  </servlet-mapping>
+  -->
+  
+  <!-- Test1 클래스 → Servlet 구성 ③ -->
+  
+  <servlet>
+  	<servlet-name>lys</servlet-name>
+  	<servlet-class>com.svt.Test1</servlet-class>
+  	<init-param>
+  		<param-name>name</param-name>
+  		<param-value>최혜인</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>age</param-name>
+  		<param-value>21</param-value>
+  	</init-param>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>lys</servlet-name>
+  	<url-pattern>/test1</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Test1 클래스 → Servlet 구성 ④ 추가 -->
+  <context-param>
+  	<param-name>type</param-name>
+  	<param-value>유머러스</param-value>
+  </context-param>
+  
+  <!-- Test2 클래스 → Servlet 구성 -->
+  <servlet>
+  	<servlet-name>test2servlet</servlet-name>
+  	<servlet-class>com.svt.Test2</servlet-class>  
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>test2servlet</servlet-name>
+  	<url-pattern>/test2</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+</web-app>
+
