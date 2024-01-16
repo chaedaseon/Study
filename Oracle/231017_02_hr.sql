@@ -1,0 +1,3 @@
+SELECT USER
+FROM DUAL;
+--==>> HR
