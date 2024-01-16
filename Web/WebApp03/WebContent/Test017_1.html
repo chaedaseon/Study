@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test017_1.html</title>
+
+<style type="text/css">
+	* {font-family: 맑은 고딕; font-weight: bold;}
+	.txt {text-align: right; width: 80px;}
+	.count {text-align: right; width: 80px;}
+
+</style>
+
+<script type="text/javascript">
+
+	function myCalculate()
+	{
+		// 확인
+		//alert("함수 호출 확인~!!!");
+		
+		var moneyStr = document.getElementById("money").value;
+		
+		// 입력값에 대한 유효성 검사 코드 삽입 가능
+		
+		var money = parseInt(moneyStr);
+		
+		document.getElementById("totalMoney").value = money;
+		
+		//var m500 = money/500;
+		//var m500 = Math.floor(money/500);
+		var m500 = parseInt(money/500);
+		
+		// 확인
+		//alert(m500);
+		
+		//alert(123.456);
+		//alert(parseInt(123.456));
+		
+		//alert(123.456);
+		//alert(Math.floor(123.456));
+		
+		money = money%500;					// money %= 500;
+		var m100 = parseInt(money/100);		// var m100 = Math.floor(money/100);
+		money = money%100;					// money %= 100;
+		var m50 = parseInt(money/50);		// var m50 = Math.floor(money/50);
+		money = money%50;					// money %= 50;
+		var m10 = parseInt(money/10);		// var m10 = Math.floor(money/10);
+		
+		document.getElementById("m500").value = m500;
+		document.getElementById("m100").value = m100;
+		document.getElementById("m50").value = m50;
+		document.getElementById("m10").value = m10;
+	}
+
+</script>
+
+</head>
+<body>
+
+<!-- 
+	특정 금액(10원 - 990원)을 사용자로부터 입력받아
+	화폐 단위로 구분하여 출력하는 페이지를 구성한다.
+	화폐 단위는 편의상 오백원, 백원, 오십원, 십원으로 구분한다.
+	HTML, CSS, Javascript 를 활용한다.
+	
+	페이지 기본 레이아웃 구성
+	-----------------------------------------------------------
+	
+	금액	[		] 원
+	
+	<결과> <취소>
+	
+	총액	[		] 원
+	오백원		[	] 개
+	백원		[	] 개
+	오십원		[	] 개
+	십원		[	] 개
+	
+	-----------------------------------------------------------
+-->
+
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+
+<div>
+	<form>
+		금액 <input type="text" id="money" class="txt"> 원
+		<br><br>
+		
+		<input type="button" id="result" class="btn" value="결과" onclick="myCalculate()">
+		<input type="reset" id="reset" class="btn" value="취소">
+		<br><br>
+		
+		총액 <input type="text" id="totalMoney" class="txt" disabled="disabled"> 원<br>
+		오백원 <input type="text" id="m500" class="txt count" disabled="disabled"> 개<br>
+		백원 <input type="text" id="m100" class="txt count" disabled="disabled"> 개<br>
+		오십원 <input type="text" id="m50" class="txt count" disabled="disabled"> 개<br>
+		십원 <input type="text" id="m10" class="txt count" disabled="disabled"> 개<br>
+			
+	</form>
+</div>
+
+</body>
+</html>

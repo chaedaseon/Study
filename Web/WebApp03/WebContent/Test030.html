@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test030.html</title>
+
+<script type="text/javascript">
+	
+	
+	var num=0;
+	
+	function sizeChoice()
+	{
+		// 확인
+		//alert("함수호출확인");
+		
+		var radioObg = document.getElementsByName("radioGroup");
+		var c = 0;		
+		
+		for (var i = 0; i < radioObg.length; i++)
+		{
+			if (radioObg[i].checked)
+			{
+				c = radioObg[i].value;
+			}			
+		}		
+		//alert(c);
+		
+		return parseInt(c);
+	}
+	
+ 	
+	function flavorChoice(size)
+	{
+		// 확인
+		//alert("함수호출확인");
+		
+		var c = sizeChoice();
+		
+		
+		if (c == 0)
+		{
+			alert("사이즈를 선택하세요.");
+			size.checked = false;
+			return;
+		}		
+		
+		if (size.checked)
+		{
+			num++;
+			
+			if (c < num)
+			{
+				alert("선택 가능한 개수를 초과했습니다.");
+				size.checked = false;
+				num--;
+				return;
+			}
+		}
+		else
+			num--;		
+	}
+	 
+
+</script>
+</head>
+<body>
+
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+
+<div>
+	<!--
+		라디오버튼, 체크박스 마다 액션이 이루어져야함
+		아이스크림 사이즈에 따른 종류 가지 수 안내
+	-->
+	
+	<h2>아이스크림 주문</h2>
+	
+	<form>
+		--- 사이즈 선택 --- <br><br>
+		
+		<label><input type="radio" name="radioGroup" id="a" value="1" onclick="sizeChoice()"> 싱글</label>
+		<label><input type="radio" name="radioGroup" id="b" value="2" onclick="sizeChoice()"> 더블</label>		
+		<label><input type="radio" name="radioGroup" id="c" value="3" onclick="sizeChoice()"> 파인트</label>
+		<label><input type="radio" name="radioGroup" id="d" value="4" onclick="sizeChoice()"> 쿼터</label>
+		<label><input type="radio" name="radioGroup" id="e" value="5" onclick="sizeChoice()"> 패밀리</label>
+		<label><input type="radio" name="radioGroup" id="f" value="6" onclick="sizeChoice()"> 하프갤런</label>
+		<br><br>
+		
+		
+		-- 종류 선택 -- <br><br>
+		
+		<label><input type="checkbox" name="checkGroup" id="f1" value="001" onclick="flavorChoice(this)"> 엄마는외계인</label>
+		<label><input type="checkbox" name="checkGroup" id="f2" value="002" onclick="flavorChoice(this)"> 레인보우샤베트</label>
+		<label><input type="checkbox" name="checkGroup" id="f3" value="003" onclick="flavorChoice(this)"> 민트초코</label>
+		<br>
+		
+		<label><input type="checkbox" name="checkGroup" id="f4" value="004" onclick="flavorChoice(this)"> 바람과함께사라지다</label>
+		<label><input type="checkbox" name="checkGroup" id="f5" value="005" onclick="flavorChoice(this)"> 애플민트</label>
+		<label><input type="checkbox" name="checkGroup" id="f6" value="006" onclick="flavorChoice(this)"> 초코나무숲</label>
+		<br>
+		
+		<label><input type="checkbox" name="checkGroup" id="f7" value="007" onclick="flavorChoice(this)"> 피스타치오아몬드</label>
+		<label><input type="checkbox" name="checkGroup" id="f8" value="008" onclick="flavorChoice(this)"> 아몬드봉봉</label>
+		<label><input type="checkbox" name="checkGroup" id="f9" value="009" onclick="flavorChoice(this)"> 요거트31</label>
+		<br>
+		
+		<label><input type="checkbox" name="checkGroup" id="f10" value="0010" onclick="flavorChoice(this)"> 체리쥬빌레</label>
+		<label><input type="checkbox" name="checkGroup" id="f11" value="0011" onclick="flavorChoice(this)"> 슈팅스타</label>
+		<label><input type="checkbox" name="checkGroup" id="f12" value="0012" onclick="flavorChoice(this)"> 사랑에빠진딸기</label>
+		<br>
+		
+		<label><input type="checkbox" name="checkGroup" id="f13" value="0013" onclick="flavorChoice(this)"> 뉴욕치즈케이크</label>
+		<label><input type="checkbox" name="checkGroup" id="f14" value="0014" onclick="flavorChoice(this)"> 쿠앤크</label>
+		<label><input type="checkbox" name="checkGroup" id="f15" value="0015" onclick="flavorChoice(this)"> 베리베리스트로베리</label>
+		<br>
+	</form>
+	
+</div>
+
+</body>
+</html>

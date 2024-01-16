@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test011.html</title>
+
+<script type="text/javascript">
+
+	num1=7;
+	num2=3;
+	
+	res=(num1 == num2);
+	document.write("num1 == num2 → ");
+	document.write(res);
+	
+	res=(num1 >= num2);
+	document.write("<br>num1 >= num2 → ");
+	document.write(res);
+	
+	res=(num1 <= num2);
+	document.write("<br>num1 <= num2 → ");
+	document.write(res);
+	
+	//--------------------------------------------
+	document.write("<br><br><br><br>");
+	
+	
+	res = (num1 < 10 && num2 < 10);
+	document.write("<br>num1 < 10 && num2 < 10 → ");
+	document.write(res);
+	
+	res = (num1 > 10 && num2 > 10);
+	document.write("<br>num1 > 10 && num2 > 10 → ");
+	document.write(res);
+	
+	res = (num1 > 10 || num2 > 10);
+	document.write("<br>num1 > 10 || num2 > 10 → ");
+	document.write(res);
+	
+	res = (num1 > 10 || num2 < 10);
+	document.write("<br>num1 > 10 || num2 < 10 → ");
+	document.write(res);
+	
+	res != (num1 == num2);
+	document.write("<br>!(num1 == num2) → ");
+	document.write(res);
+	
+	//--------------------------------------------
+	document.write("<br><br><br><br>");
+	
+	// 삼항 연산자 = 조건 연산자
+	human = "연인";
+	
+	res = (human == "연인") ? "사랑" : "우정";
+	document.write("<br>res = ");
+	document.write(res);
+	
+	human = "친구";
+	
+	res = (human == "연인") ? "사랑" : "우정";
+	document.write("<br>res = ");
+	document.write(res);
+
+</script>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test017.html</title>
+
+<style type="text/css">
+	* {font-family: 맑은 고딕; font-weight: bold;}
+	.res {text-align: right; width: 80px;}
+	.reswon {text-align: right; width: 80px;}
+	.btn1 {margin-left: 50px;}
+
+</style>
+
+<script type="text/javascript">
+	
+	function btnResult()
+	{
+		var money = document.getElementById("money").value;		// 사용자가 입력한 금액
+		var tot = document.getElementById("tot");
+		
+		tot.value = money;										// 사용자가 입력한 금액 = 총액에 대입
+		
+		var obaek = document.getElementById("obaek");
+		var baek = document.getElementById("baek");
+		var osib = document.getElementById("osib");
+		var sib = document.getElementById("sib");
+		
+		
+		// 함수 사용
+		obaek.value = Math.trunc(Number(money)/500);			
+		baek.value = Math.trunc(Number(money)%500/100);
+		osib.value = Math.trunc(Number(money)%500%100/50);
+		sib.value = Math.trunc(Number(money)%500%100%50/10);
+		
+		/* 
+		// 함수 사용 X
+		obaek.value = parseInt(money/500);
+		baek.value = parseInt(money%500/100);
+		osib.value = parseInt(money%500%100/50);
+		sib.value = parseInt(money%500%100%50/10);
+		 */
+		
+	}
+	
+</script>
+</head>
+<body>
+
+<!-- 
+	특정 금액(10원 - 990원)을 사용자로부터 입력받아
+	화폐 단위로 구분하여 출력하는 페이지를 구성한다.
+	화폐 단위는 편의상 오백원, 백원, 오십원, 십원으로 구분한다.
+	HTML, CSS, Javascript 를 활용한다.
+	
+	페이지 기본 레이아웃 구성
+	-----------------------------------------------------------
+	
+	금액	[		] 원
+	
+	<결과> <취소>
+	
+	총액	[		] 원
+	오백원		[	] 개
+	백원		[	] 개
+	오십원		[	] 개
+	십원		[	] 개
+	
+	-----------------------------------------------------------
+-->
+
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+
+<div>
+	<form>
+		금 &nbsp;&nbsp;액 <input type="text" id="money" class="res"> 원
+		<br><br>
+		
+		<input type="button" id="result" class="btn1" value="결과" onclick="btnResult()">
+		<input type="reset" id="reset" class="btn2" value="취소">
+		<br><br>
+		
+		총 &nbsp;&nbsp;액 <input type="text" id="tot" class="res" disabled="disabled"> 원<br>
+		오백원 <input type="text" id="obaek" class="reswon" disabled="disabled"> 개<br>
+		백  &nbsp;&nbsp;원 <input type="text" id="baek" class="reswon" disabled="disabled"> 개<br>
+		오십원 <input type="text" id="osib" class="reswon" disabled="disabled"> 개<br>
+		십  &nbsp;&nbsp;원 <input type="text" id="sib" class="reswon" disabled="disabled"> 개<br>
+			
+	</form>
+</div>
+</body>
+</html>
