@@ -1,0 +1,47 @@
+			■■■ 키보드 주요 특수문자 영문 이름 ■■■ 
+
+
+『`』  → Grave 				그레이브
+『~』  → Tilde 				틸드
+『!』  → Exclamation Point 			거의 다 느낌표라고 말함
+『@』  → At Sign, Commercial Sign 		엣 사인, 엣 
+『#』  → Crosshatch, Sharp, Pound Sign 	샵 
+『$』  → Dollar Sign 				달러사인
+『%』  → Percent Sign 				퍼센트사인
+『^』  → Circumflex 				써컴플렉스 기억해두기!
+『&』  → Ampersand 				엠퍼샌드
+『*』  → Asterisk 				애스터리스크
+『(』  → Left Parenthesis	┐
+『)』  → Right Parenthesis     ├ 대부분 그냥 괄호라고 함! 
+『()』 → Parentheses    	┘		※복수형 -ses
+
+『-』  → Hyphen, Dash, Minus sigh		하이픈, 대쉬, 마이너스 사인
+『_』  → Underscore, Underline, Underbar 	언더스코어, 언더라인, 언더바
+『+』  → Plus sign 				플러스 사인
+『=』  → Equal sign 				이퀄 사인
+『|』  → Vertical Bar 				버티컬 바 , 파이프  ※글꼴에 영향
+
+『[』  → Left Bracket  ┐
+『]』  → Right Bracket ├ 각괄호, 브라켓 
+『[]』 → Brackets      ┘
+
+『}』  → Left Brace    ┐
+『{』  → Right Brace   ├ 브레이스
+『{}』 → Brace	 	┘ 		※복수 형태로 사용 안함
+
+『;』  → Semicolon 				세미콜론
+『:』  → colon 				콜론
+『"』  → Qutation Mark 			더블 쿼테이션 
+『'』  → Apostrophe 				싱글 쿼테이션 
+『,』  → Comma 				컴마 
+『.』  → Period, Full Stop, Dot 		닷(점)
+
+『<』  → Less Than Sign, Left Angle Bracket  	┐
+『>』  → Greater Than Sign, Right Angle Bracket├ 엥글브라켓 , 부등호
+『<>』 → Angle Bracket  			┘
+
+『/』  → Slash. Virgule 			슬러시 
+『\』  → Back Slash, Won Sign			역슬러시	※글꼴에 영향
+『?』  → Question Mark 
+『 』  → Space, White Space
+

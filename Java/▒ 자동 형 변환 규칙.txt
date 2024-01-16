@@ -1,0 +1,6 @@
+
+■■■ 자동 형 변환 규칙 ■■■
+
+ byte → short → int → long → float → double
+	        ↗ 
+	   char
