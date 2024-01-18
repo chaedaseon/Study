@@ -1,0 +1,74 @@
+■■■ Spring MVC 프로젝트 실습 03 ■■■
+
+○ Perspective
+   : JavaEE
+
+○ 다이나믹 웹 프로젝트 생성 (비STS 버전)
+   : Mvc03
+
+○ 기본 환경 구성 및 라이브러리 설정
+   : Mvc00 (우리가 임의로 구성해둔 샘플)로 부터
+     src, WebContent 디렉터리 복사 & 덮어쓰기
+
+○ 실습 성격
+   : 데이터 송수신 관련 실습(Spring MVC 버전)
+     JDBC 모듈 추가 활용
+     SimpleDriverDataSource 클래스(객체) 활용
+
+○ 기능 구현
+   : 사용자로부터 이름, 전화번호 정보를 입력받아 데이터베이스에 저장
+     저장된 이름, 전화번호 항목을 데이터베이스로부터 읽어 화면에 구성
+
+○ 사전 작업
+   - TBL_MEMBERLIST 테이블 생성
+   - MEMBERLISTSEQ 시퀀스 생성
+   - 샘플 데이터 입력 및 조회
+
+○ 기본 레이아웃(페이지 화면 구성)
+   이름 [        ]      → <input type="text">
+   전화 [        ]      → <input type="text">
+   < 회원 추가 >        → <button type="button">
+
+   전체 인원 수 : 2명   → <p>...</p>
+   ------------------   → <table>...</table>
+   번호 이름 전화번호
+    1.  노.. 010...
+    2.  김.. 010...
+   ------------------
+
+○ 물리적 파일 구성
+   - Mvc03_scott.sql 		→ 데이터베이스 관련 객체 구성 및 실습 데이터 준비
+   
+   - MemberDTO.java		→ 사용자 정의 자료형 클래스(DTO 활용)
+
+   - IMemberDAO.java 		→ 인터페이스	
+   - MemberDAO.java		→ 데이터베이스 액션 처리 클래스
+				   Connection 객체에 대한 의존성 주입
+                                   (의존성 주입을 위한 준비 필요)
+
+   - MemberListController.java 	→ 사용자 정의 컨트롤러 클래스
+                                   리스트 출력 액션
+                                   DAO 객체에 대한 의존성 주입
+                                   (의존성 주입을 위한 준비 필요)
+
+   - MemberList.jsp 		→ 회원 리스트 출력용 뷰
+                                   회원 데이터 입력(추가) 폼 화면 구성
+
+   - MemberInsertController.java → 사용자 정의 컨트롤러 클래스
+                                    회원 데이터 추가 액션
+                                    DAO 객체에 대한 의존성 주입
+                                    (의존성 주입을 위한 준비 필요)
+
+   - web.xml			→ DispatcherServlet 객체 등록
+                                   URL 매핑 주소 등록
+
+   - dispatcher-servlet.xml 	→ 컨트롤러 객체 등록
+                                   URL 매핑 주소 등록
+                                   SimpleDriverDataSource 객체 등록
+                                   의존 객체 주입 설정
+                                   DAO 객체 등록
+
+   - memberlist.do		→ 이클립스 실행 과정에서 요청을 위한 빈 파일
+
+○ 사용자 최초 요청 주소
+   http://localhost:3306/Mvc03/memberlist.do
