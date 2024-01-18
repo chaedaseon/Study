@@ -201,14 +201,14 @@
    #67. DepListController.java
         (deplist.action)
 
-   #66. RegList.jsp
+   #68. RegList.jsp
 
-   #67. RegListController.java
+   #69. RegListController.java
         (reglist.action)
 
-   #66. PosList.jsp
+   #70. PosList.jsp
 
-   #67. PosListController.java
+   #71. PosListController.java
         (poslist.action)
 
 
