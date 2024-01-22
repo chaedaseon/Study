@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+			
+			
+			
+	<!-- ※ Annotation 표기법으로 Controller 객체를 등록한다. -->
+	<!--    → Annotation 표기법으로 작성된 Controller 객체를 -->
+	<!--       스프링 컨테이너가 자동으로 알아서 스캔할 수 있도록 처리 -->
+	<context:component-scan	base-package="com.test.mvc" />
+	<!--    → 『base-package』 속성에 Controller 객체가 포함된 패키지 경로를 지정한다. -->
+	
+	
+	<!-- ※ 사용자 정의 Controller 객체 등록 및 URL 매핑 주소 등록 -->
+	<!--    - 『name=""』 속성에 매핑 주소를 등록한다. -->
+	<!--    이 과정에서 Front Controller 가 갖고있는 확장자의 형태로 구성한다. -->
+	<!--    - 『class=""』 속성은 -->
+	<!--       Controller 객체의 패키지 경로가 포함된 클래스 이름을 등록한다. -->
+	
+
+
+
+
+
+</beans>
