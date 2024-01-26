@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mybatis.IStudentDAO">
+	
+	<!-- 전체 학생 정보 리스트 출력 쿼리문 -->
+	<select id="list" resultType="com.test.mybatis.StudentDTO">
+		SELECT SID, NAME, TEL, SUB
+		FROM STUDENTVIEW
+		ORDER BY SID
+	</select>
+	
+	<!-- 학생 인원 수 출력 쿼리문 -->
+	<select id="count" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT
+		FROM TBL_STUDENT
+	</select>
+	
+	<!-- 학생 정보 입력 쿼리문 -->
+	<insert id="add">
+		INSERT INTO TBL_STUDENT(SID, NAME, TEL)
+		VALUES(#{sid}, #{name}, #{tel})
+	</insert>
+	
+	<!-- 학생 번호 최대값 출력 쿼리문 -->
+	<select id="maxNum" resultType="java.lang.Integer">
+		SELECT MAX(SID)
+		FROM TBL_STUDENT
+	</select>
+	
+	<!-- 학생 정보 수정 쿼리문 -->
+	<update id="modify">
+		UPDATE TBL_STUDENT
+		SET NAME=#{name}, TEL=#{tel}
+		WHERE SID=#{sid}
+	</update>
+	
+	<!-- 아이디로 학생 정보 검색 쿼리문 -->
+	<select id="searchId" resultType="com.test.mybatis.StudentDTO">
+		SELECT SID, NAME, TEL
+		FROM TBL_STUDENT
+		WHERE SID=#{sid}
+	</select>
+	
+	<!-- 학생 정보 삭제 쿼리문 -->
+	<delete id="remove">
+		DELETE
+		FROM TBL_STUDENT
+		WHERE SID=#{sid}
+	</delete>
+
+</mapper>

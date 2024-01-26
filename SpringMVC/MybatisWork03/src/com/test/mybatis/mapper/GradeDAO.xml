@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mybatis.IGradeDAO">
+	
+	<!-- 전체 성적 조회 쿼리문 -->
+	<select id="list" resultType="com.test.mybatis.GradeDTO">
+		SELECT SID, NAME, SUB1, SUB2, SUB3, TOT, AVG, CH
+		FROM GRADEVIEW
+		ORDER BY SID	
+	</select>
+	
+	<!-- 성적 정보 입력 쿼리문 -->
+	<insert id="add">
+		INSERT INTO TBL_GRADE(SID, SUB1, SUB2, SUB3)
+		VALUES(#{sid}, #{sub1}, #{sub2}, #{sub3})	
+	</insert>
+	
+	<!-- 성적 정보 삭제 쿼리문 -->
+	<delete id="remove">
+		DELETE
+		FROM TBL_GRADE
+		WHERE SID=#{sid}
+	</delete>
+	
+	<!-- 성적 정보 수정 쿼리문 -->
+	<update id="modify">
+		UPDATE TBL_GRADE
+		SET SUB1=#{sub1}, SUB2=#{sub2}, SUB3=#{sub3}
+		WHERE SID=#{sid}
+	</update>
+	
+	<!-- 아이디로 성적 정보 검색 쿼리문 -->
+	<select id="searchId" resultType="com.test.mybatis.GradeDTO">
+		SELECT SID, NAME, SUB1, SUB2, SUB3
+		FROM GRADEVIEW
+		WHERE SID=#{sid}
+	</select>
+
+</mapper>
