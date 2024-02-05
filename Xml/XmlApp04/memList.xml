@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- DTD 구성 -->
+<!DOCTYPE memList 
+[
+<!ELEMENT memList (memberInfo+)>
+<!ELEMENT memberInfo (name, telephone, addr, birth, curriculumn?, gender)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT telephone (#PCDATA)>
+<!ELEMENT addr (#PCDATA)>
+<!ELEMENT birth (#PCDATA)>
+<!ELEMENT curriculumn (sub+)>
+<!ELEMENT sub (#PCDATA)>
+<!ELEMENT gender (#PCDATA)>
+<!ATTLIST memberInfo mid CDATA #IMPLIED>
+]>
+
+<memList>
+	<!-- memList.xml -->
+	<memberInfo mid="1">
+		<name>채다선</name>
+		<telephone><![CDATA[010-2694-8958]]></telephone>
+		<addr>서울</addr>
+		<birth><![CDATA[1996-10-23]]></birth>
+		<curriculumn>
+			<sub>JAVA</sub>
+			<sub>ORACLE</sub>
+		</curriculumn>
+		<gender>여자</gender>
+	</memberInfo>
+	<memberInfo mid="2">
+		<name>최혜인</name>
+		<telephone><![CDATA[010-1111-1111]]></telephone>
+		<addr>인천</addr>
+		<birth><![CDATA[1997-00-00]]></birth>
+		<curriculumn>
+			<sub>JAVA</sub>
+			<sub>ORACLE</sub>
+		</curriculumn>
+		<gender>여자</gender>
+	</memberInfo>
+	<memberInfo mid="3">
+		<name>김다슬</name>
+		<telephone><![CDATA[010-2222-2222]]></telephone>
+		<addr>서울</addr>
+		<birth><![CDATA[1994-00-00]]></birth>
+		<gender>여자</gender>
+	</memberInfo>
+	<memberInfo>
+		<name>김동민</name>
+		<telephone><![CDATA[010-3333-3333]]></telephone>
+		<addr>인천</addr>
+		<birth><![CDATA[1999-00-00]]></birth>
+		<gender>남자</gender>
+	</memberInfo>
+</memList>
