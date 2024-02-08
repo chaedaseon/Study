@@ -1,0 +1,119 @@
+■■■ XPath(XML Path Language) ■■■
+
+○ XPath 개요
+   - XPath 는 XSLT 표준의 주요 요소이다.
+   - XPath 를 사용하여 XML 문서의 요소 및 속성을 탐색할 수 있다.
+   - XPath 는 경로 표현식을 활용하여 XML 문서에서 노드를 식별하고 탐색한다.
+   - XPath 는 W3C 권장 사항이다.
+
+
+○ XPath 의 경로 표현식(XPath Path Expressions)
+   - XPath 는 경로 표현식을 사용하여 
+     XML 문서에서 Node 또는 NodeSet 을 선택한다.
+   - 이러한 경로 표현식은 기존 파일시스템에서 사용하는
+     경로 표현식과 매우 유사하다.
+
+
+○ XPath 의 표준 기능(XPath Standard Functions)
+   - XPath 에는 200개 이상의 내장 기능이 포함되어 있다.
+   - 문자열 값(string values), 숫자 값(numeric values)
+     , 부울(booleans), 날짜 및 시간 비교(date and time comparison)
+     , 노드 노작(node manopuliation), 시퀀스 조작(sequence manipuliation)
+     등을 위한 기능이 있다.
+   - 현재 XPath 표현식은 Javascript, Java, XML 스키마, PHP, Python, C, C++ 및
+     기타 여러 언어에서도 사용할 수 있다.
+
+
+○ XPath 주요 용어
+   - 노드(Nodes)
+     ·XPath 에는 요소, 속성, 텍스트, 네임스페이스, 처리명령, 주석, 문서
+       이렇게 총 7 가지 노드가 있다.
+     ·XML 문서는 노드 트리로 다루어지며
+       트리의 최상위 요소를 루트 요소라고 한다.
+   - 원자 값(Atomic values)
+     ·원자 값은 자식이나 부모가 없는 노드이다.
+   - 아이템(items)
+     ·아이템(items)은 원자값 또는 노드이다.
+
+<bookstore>					→ <bookstore>  → Node(root element node)
+   <book>					→ <book>       → Node(element node)
+      <title lang="en">Harry Poter</title>	→ <title>      → Node(element node)
+             ---------				→ lang="en"    → Node(attribute node)
+             ---------				→ lang="en"    → 원자 값(atomic values)
+      <author>J.K. Rowling</author>
+              ------------			→ J.K. Rowling → 원자 값(atomic values)
+      <year>2005</year>
+      <price>29.99</price>
+   </book>
+</bookstore>
+
+
+○ 노드의 관계(Relationship of Nodes)
+   - 부모
+   - 자식
+   - 형제, 자매
+   - 선조, 조상
+   - 자손
+
+
+○ 노드 선택(Selection Nodes)
+   - XPath 는 경로 표현식을 사용하여 XML 문서에서 Node 를 선택한다.
+   - 경로 또는 단계에 따라 Node 가 선택된다.
+ 
+   ----------------- --------------------------------------------------------------
+   Expression        Description
+   ----------------- --------------------------------------------------------------
+   nodename          이름이 "nodename"인 모든 노드를 선택한다.
+   / 	             루트 노드에서 선택한다.
+   //                현재 노드에서 선택한 위치에 상관없이 문서의 노드를 선택한다.
+   .                 현재 노드를 선택한다.
+   ..                현재 노드의 부모 노드를 선택한다.
+   @                 속성을 선택한다.
+   ----------------- --------------------------------------------------------------
+	              ↓
+   ----------------- --------------------------------------------------------------
+   Expression        Description
+   ----------------- --------------------------------------------------------------
+   bookstore         이름이 "bookstore"인 모든 노드를 선택한다.
+   /bookstore        루트 요소인 bookstore 를 선택한다.
+                     이 때, 표현식이 사용되는 경로가
+                     『/』로 시작하면 요소의 절대 경로를 나타낸다.
+   bookstore/book    bookstore의 하위인 모든 book 요소를 선택한다.
+   //book            문서 상 어느 위치에 존재하든 모든 book 요소를 선택한다.
+   bookstore//boook  bookstore 의 하위 요소인 모든 book 요소를 선택한다.
+   //@lang           lang 이라는 모든 속성을 선택한다.
+   ----------------- --------------------------------------------------------------
+
+
+※ 경로 표현식의 추가 옵션
+   - 표현식 : /bookstore/book[1]
+     내용   : bookstore 요소의 하위 첫 번째 book 요소를 선택한다.
+              단, IE 5 ~ 9 브라우저에서 첫 번째 노드는 [0] 이다.
+              하지만, W3C 규칙을 준수하는 다른 브라우저에서 첫 번째 노드는 [1] 이다.
+              따라서, IE 에서 발생하는 이 문제를 해결하기 위해서는
+              SelectionLanguage 를 XPath 로 설정해야 한다.
+
+   - 표현식 : /bookstore/book[last()]
+     내용   : bookstore 요소의 하위인 마지막 book 요소를 선택한다.
+
+   - 표현식 : /bookstore/book[position()<3]
+     내용   : bookstore 요소의 하위인 처음 두 개의 book 요소를 선택한다.
+
+   - 표현식 : //title[@lang]
+     내용   : lang 이라는 속성을 가진 모든 title 요소를 선택한다.
+
+   - 표현식 : //title[@lang="en"]
+     내용   : lang 속성의 값이 en 인 모든 title 요소를 선택한다.
+
+   - 표현식 : /bookstore/book[price>35.00]
+     내용   : price 가 35.00 보다 큰 요소가 있는 bookstore 요소의
+              모든 book 요소를 선택한다.
+
+
+
+
+
+
+
+
+

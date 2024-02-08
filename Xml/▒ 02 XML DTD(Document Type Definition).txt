@@ -1,0 +1,104 @@
+■■■ XML DTD(Document Type Definition) ■■■
+
+○ 개요
+   XML 문서의 엘리먼트, 속성에 대한 구조(structure)를 표현한 문서.
+
+   DTD(Document Type Definition)는 문서의 형태를 정의하는 것으로
+   XML 문서의 구조를 명시적으로 선언하는 역할을 하며
+   XML 문서가 잘 만들어진 유효한(valid) 문서인지를 확인하기 위해 사용하는 문서이다.
+   따라서, DTD 를 사용하여 요소와 요소의 내용, 속성과 속성의 내용
+   그리고 요소의 순서나 반복성, 필수여부 등을 미리 정해놓고 XML 문서를 작성하는 것이다.
+   이렇게 되면 XML 문서를 작성하는 경우에 미리 잘못된 문서를 작성하는 실수를
+   줄일 수 있게 된다.
+
+※ 유효한(valid) XML
+   유효한(valid) XML 은 well-formed XML 을 보다 엄격하게 검증한 문서
+                        ---------------         -------------
+                           1차 검증                1차 검증
+
+   기본적인 조건으로 모두 well-formed 이어야 하며,
+   이에 추가하여 DTD를 가지고 있고, 이에 따라 검증된 문서를 의미한다.
+
+
+○ DTD 샘플
+
+<!DOCTYPE 루트엘리먼트 []>
+→
+<!DOCTYPE 루트엘리먼트 
+[
+<!ELEMENT 루트엘리먼트 (1차하위엘리먼트 목록)>
+<!ELEMENT 1차하위엘리먼트 (2차하위엘리먼트 목록)>
+<!ELEMENT 2차하위엘리먼트 (#PCDATA)>
+<!ATTLIST 2차하위엘리먼트
+         속성이름 속성값 필수여부
+          ...>
+]>
+
+==> XML 문서에 대한 설계 과정
+
+
+○ DTD 와 XML 문서의 결합
+
+   - 별도의 『.dtd』파일을 작성한 후 XML 문서와 연결
+
+   // note.dtd
+   <!DOCTYPE note
+   [
+   <!ELEMENT note (to,from,heading,body)>
+   <!ELEMENT to (#PCDATA)>
+   <!ELEMENT from (#PCDATA)>
+   <!ELEMENT heading (#PCDATA)>
+   <!ELEMENT body (#PCDATA)>
+   ]>
+
+   // note.xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE note SYSTEM "note.dtd">
+   <note>
+       <to>Tove</to>
+       <from>Jani</from>
+       <heading>Reminder</heading>
+       <body>Do not forget me this weekend</body>
+   </note>
+
+
+   - XML 문서 내부에 삽입
+
+   // note.xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   
+   <!DOCTYPE note
+   [
+   <!ELEMENT note (to,from,heading,body)>
+   <!ELEMENT to (#PCDATA)>
+   <!ELEMENT from (#PCDATA)>
+   <!ELEMENT heading (#PCDATA)>
+   <!ELEMENT body (#PCDATA)>
+   ]>
+
+   <note>
+       <to>Tove</to>
+       <from>Jani</from>
+       <heading>Reminder</heading>
+       <body>Do not forget me this weekend</body>
+   </note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
