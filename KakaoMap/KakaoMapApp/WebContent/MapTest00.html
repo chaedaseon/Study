@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MapTest00.html</title>
+</head>
+<body>
+
+<!-- ○ 발급받은 App Key -->
+<!-- appkey=6deffd0f352a0e6f8ae48b94ee77f4b3 -->
+<!-- ○ 지도의 중심 좌표 -->
+<!-- 37.5565401,126.9194871 -->
+
+<div>
+	<h1>Kakao Map 생성 기본 관찰</h1>
+	<p>지도 생성 기본 내용 관찰</p>
+	<hr>
+</div>
+
+<!-- 지도를 그릴(랜더링 할) div 공간 확보(지정) -->
+<div id="map" style="width: 100%; height: 350px;"></div>
+
+<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY 사용"></script> -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6deffd0f352a0e6f8ae48b94ee77f4b3"></script>
+
+<script type="text/javascript">
+	var mapContainer = document.getElementById("map");			// 지도를 표시할 div
+	var mapOption = 
+	{
+		center : new daum.maps.LatLng(37.5565401,126.9194871),	// 지도의 중심좌표
+		level : 3, 												// 지도의 확대축소 레벨
+	};
+	
+	// 지도를 표시할 div 와 지도 옵션을 활용하여 지도 생성
+	var map = new daum.maps.Map(mapContainer, mapOption);
+	
+</script>
+
+</body>
+</html>

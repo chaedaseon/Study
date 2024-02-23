@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MapTest16.html</title>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6deffd0f352a0e6f8ae48b94ee77f4b3"></script>
+
+<script type="text/javascript">
+
+	function initialize()
+	{
+		container = document.getElementById("map");
+		mapCenter = new kakao.maps.LatLng(37.5565401,126.9194871);
+		options = 
+		{
+			center: mapCenter,
+			level: 3,
+		};
+		
+		map = new kakao.maps.Map(container, options);
+		
+		// 마커 옵션 구성
+		//-- 길 건너 스타벅스 
+		markerCenter = new kakao.maps.LatLng(37.55687905072711, 126.9199905699324);
+		
+		// 마커 생성
+		marker = new kakao.maps.Marker(
+		{
+			position: markerCenter,
+		});
+		
+		// 마커가 지도에 표시될 수 있도록 설정
+		marker.setMap(map);
+		
+		// 인포 윈도우 옵션 구성
+		var iwContent = "<div style='padding:5px;'>";
+		iwContent += "스타벅스<br>";
+		iwContent += "<a href='https://maps.kakao.com/link/map/스타벅스,37.556879,126.91999' style='color:blue;' target='_blank'>큰지도보기</a>";
+		iwContent += " <a href='https://maps.kakao.com/link/to/스타벅스,37.556879,126.91999' style='color:blue;' target='_blank'>길찾기</a>";
+		iwContent += "</div>";
+		
+		// 인포 윈도우 구성
+		var infowindow = new kakao.maps.InfoWindow(
+		{
+			//position: markerCenter,
+			//content: iwContent,
+			position: markerCenter
+			, content: iwContent
+		});
+		
+		// 마커에 인포 윈도우가 표시될 수 있도록 설정
+		infowindow.open(map, marker);
+		//-- 두 번째 파라미터 값(marker)을 설정하지 않을 경우
+		//   지도 위에 직접 인포 윈도우를 올려서 사용하는 개념(즉, 지도 위에 직접 표시)
+		
+		
+		
+	}
+
+</script>
+</head>
+<body onload="initialize()">
+
+<!-- ○ 발급받은 App Key -->
+<!-- appkey=6deffd0f352a0e6f8ae48b94ee77f4b3 -->
+<!-- ○ 지도의 중심 좌표 -->
+<!-- 37.5565401,126.9194871 -->
+
+<div>
+	<h1>Kakao Map 인포윈도우 구성</h1>
+	<hr>
+</div>
+
+<div id="map" style="width: 100%; height: 350px;"></div>
+
+</body>
+</html>

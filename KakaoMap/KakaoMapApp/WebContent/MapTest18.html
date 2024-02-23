@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MapTest18.html</title>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6deffd0f352a0e6f8ae48b94ee77f4b3"></script>
+
+<script type="text/javascript">
+
+	function initialize()
+	{
+		container = document.getElementById("map");
+		options =
+		{
+			center: new kakao.maps.LatLng(37.5565401,126.9194871)
+			, level: 3
+		};
+		
+		map = new kakao.maps.Map(container, options);
+		
+		// check~!!!
+		// 다중 마커를 등록할 속성 구성
+		positions = 
+		[
+			{
+				title: "스타벅스"
+				, latlng: new kakao.maps.LatLng(37.556872293253015, 126.9199905771574)
+			}
+			, {
+				title: "컴포즈커피"
+				, latlng: new kakao.maps.LatLng(37.55622176999386, 126.9206533435161)
+			}
+			, {
+				title: "메가커피"
+				, latlng: new kakao.maps.LatLng(37.55596741496629, 126.92091674303273)
+			}
+			, {
+				title: "이디야커피"
+				, latlng: new kakao.maps.LatLng(37.555611352329535, 126.92066530809682)
+			}
+			, {
+				title: "소림커피"
+				, latlng: new kakao.maps.LatLng(37.55624349227538, 126.9194678172361)
+			}
+			, {
+				title: "투썸플레이스"
+				, latlng: new kakao.maps.LatLng(37.55606376562281, 126.92016403236255)
+			}
+		];
+		
+		// 마커 이미지 구성
+		imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+		imageSize = new kakao.maps.Size(24, 35);
+		
+		// check~!!!
+		// 다중 마커 생성 → 반복문 구성
+		for (var i=0; i<positions.length; i++)
+		{
+			// 마커 이미지 생성
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+			
+			// 마커 생성
+			var marker = new kakao.maps.Marker(
+			{
+				map: map 							//-- 마커 표시 지도
+				, position: positions[i].latlng 	//-- 마커 표시 위치
+				, title: positions[i].title 		//-- 마커 타이틀
+				, image: markerImage 				//-- 마커 이미지
+			});			
+		}		
+	}
+	
+</script>
+</head>
+<body onload="initialize()">
+
+<!-- ○ 발급받은 App Key -->
+<!-- appkey=6deffd0f352a0e6f8ae48b94ee77f4b3 -->
+<!-- ○ 지도의 중심 좌표 -->
+<!-- 37.5565401,126.9194871 -->
+
+<div>
+	<h1>Kakao Map 다중 마커 생성</h1>
+	<hr>
+</div>
+
+<div id="map" style="width: 100%; height: 350px;"></div>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MapTest15.html</title>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6deffd0f352a0e6f8ae48b94ee77f4b3"></script>
+
+<script type="text/javascript">
+
+	function initialize()
+	{
+		container = document.getElementById("map");
+		mapCenter = new kakao.maps.LatLng(37.5565401,126.9194871);
+		options =
+		{
+			center: mapCenter,
+			level: 3,
+		};
+		
+		map = new kakao.maps.Map(container, options);
+		
+		// 마커의 속성 구성
+		//imageSrc = "images/markerImg.png";					//-- 마커 이미지 경로
+																//   (또는 웹 상의 주소)
+		//imageSrc = "http://localhost:3306/KakaoMapApp/images/markerImg.png";
+		//imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png";
+		//imageSrc = "images/markerGif06.gif"; 
+		imageSrc = "images/markerGif03.gif"; 
+		imageSize = new kakao.maps.Size(44, 60);				//-- 마커 이미지 크기
+		imageOption = {offset: new kakao.maps.Point(23, 60)};	//-- 마커 이미지 포인트 오프셋
+		//-- 마커 이미지에 대한 옵션
+		//   마커 좌표과 일치시킬 이미지 내부에서의 좌표 설정
+		
+		// 마커의 속성을 활용하여 마커 이미지 생성
+		markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+		//-- 이미지 경로와 크기와 옵션을 전달
+		
+		// 마커 생성
+		marker = new kakao.maps.Marker(
+		{
+			position: mapCenter,								//-- 마커 좌표 설정
+			image: markerImage,									//-- 마커 이미지 설정
+		});
+		
+		// 마커가 지도에 표시될 수 있도록 설정
+		marker.setMap(map);
+		
+	}
+	
+</script>
+
+</head>
+<body onload="initialize()">
+
+<!-- ○ 발급받은 App Key -->
+<!-- appkey=6deffd0f352a0e6f8ae48b94ee77f4b3 -->
+<!-- ○ 지도의 중심 좌표 -->
+<!-- 37.5565401,126.9194871 -->
+
+<div>
+	<h1>Kakao Map 다른 형태의 마커 생성</h1>
+	<hr>
+</div>
+
+<div id="map" style="width: 100%; height: 350px;"></div>
+
+</body>
+</html>

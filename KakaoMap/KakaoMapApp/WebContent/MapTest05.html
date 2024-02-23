@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MapTest05.html</title>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6deffd0f352a0e6f8ae48b94ee77f4b3"></script>
+
+<script type="text/javascript">
+
+	function initialize()
+	{
+		container = document.getElementById("map");
+		options =
+		{
+			center: new kakao.maps.LatLng(37.5565401,126.9194871),		// 풍성빌딩
+			level: 3,													// 지도 확대축소 레벨
+		};
+		
+		map = new kakao.maps.Map(container, options);
+		
+		// 지도 레벨 표시 함수 호출
+		displayLevel();
+	}
+	
+	// 지도 레벨 표시 함수 정의
+	function displayLevel()
+	{
+		var levelEl = document.getElementById("mapLevel");
+		levelEl.innerHTML = "현재 지도 레벨은 " + map.getLevel() + " 레벨 입니다.";
+	}
+	
+	// ※ 지도의 레벨은 지도의 확대축소 수준을 의미한다.
+	//    지도의 레벨(1 ~ 14)은 숫자가 적을 수록 지도의 확대 수준이 높다.
+	
+	// 지도 레벨 -1(낮추기, 확대)
+	function zoomIn()
+	{
+		// 현재의 지도 레벨 얻어오기
+		var level = map.getLevel();
+		
+		// 얻어온 지도의 현재 레벨에서 1 내리기(→ 지도 확대)
+		map.setLevel(level - 1);
+		
+		// 지도 레벨 표시 함수 호출
+		displayLevel();
+		
+	}
+	
+	// 지도 레벨 +1(높이기, 축소)
+	function zoomOut()
+	{
+		// 현재의 지도 레벨 얻어오기
+		var level = map.getLevel();
+		
+		// 얻어온 지도의 현재 레벨에서 1 올리기(→ 지도 축소)
+		map.setLevel(level + 1);
+		
+		// 지도 레벨 표시 함수 호출
+		displayLevel();
+	}
+
+</script>
+
+</head>
+<body onload="initialize()">
+
+<!-- ○ 발급받은 App Key -->
+<!-- appkey=6deffd0f352a0e6f8ae48b94ee77f4b3 -->
+<!-- ○ 지도의 중심 좌표 -->
+<!-- 37.5565401,126.9194871 -->
+
+<div>
+	<h1>Kakao Map 레벨 전환</h1>
+	<hr>
+</div>
+
+<!-- 지도를 그릴 공간 확보(지정) -->
+<div id="map" style="width: 100%; height: 350px;"></div>
+
+<br>
+
+<!-- 지도 레벨 확인(출력) -->
+<span id="mapLevel"></span>
+
+<p>
+	<button type="button" onclick="zoomIn()">지도 레벨 -1(낮추기, 확대)</button>
+	<button type="button" onclick="zoomOut()">지도 레벨 +1(높이기, 축소)</button>
+</p>
+
+</body>
+</html>

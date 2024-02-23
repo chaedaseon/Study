@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MapTest08.html</title>
+
+<style type="text/css">
+	html, body {width: 100%; height: 100%; margin: 0; padding: 0}
+	.map_wrap {position: relative; overflow: hidden; width: 100%; height: 350px;}
+	.radius_border {border: 1px solid #919191; border-radius: 5px;}
+	.custom_typecontrol
+	{
+		position: absolute; top: 10px; right: 10px; 
+		overflow: hidden; width: 130px; height: 30px;
+		margin: 0; padding: 0; z-index: 1; font-size: 12px; font-family: 맑은 고딕;
+	}
+	.custom_typecontrol span
+	{
+		display: block; width: 65px; height: 30px;
+		float: left; text-align: center; line-height: 30px; cursor: pointer;
+	}
+	.custom_typecontrol .btn 
+	{
+		background: #fff;
+		background: linear-gradient(#fff, #e6e6e6);
+	}
+	.custom_typecontrol .btn:hover
+	{
+		background: #f5f5f5;
+		background: linear-gradient(#f5f5f5, #e3e3e3);
+	}
+	.custom_typecontrol .btn:active
+	{
+		background: #e6e6e6;
+		background: linear-gradient(#e6e6e6, #fff);
+	}
+	.custom_typecontrol .selected_btn
+	{
+		color: #fff;
+		background: #425470;
+		background: linear-gradient(#425470, #5b6d8a);
+	}
+	.custom_typecontrol .selected_btn:hover {color: #e3e3e3;}
+	.custom_zoomcontrol
+	{
+		position: absolute;;
+		top: 50px; right: 10px;
+		width: 36px; height: 80px;
+		overflow: hidden; z-index: 1; background-color: #f5f5f5;
+	}
+	.custom_zoomcontrol span
+	{
+		display: block; width: 36px; height: 40px;
+		text-align: center; cursor: pointer;
+	}
+	.custom_zoomcontrol span img
+	{
+		width: 15px; height: 15px;
+		padding: 12px 0;
+		border: none; 
+	}
+	.custom_zoomcontrol span:first-child
+	{
+		border-bottom: 1px solid #bfbfbf; 
+	}
+</style>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6deffd0f352a0e6f8ae48b94ee77f4b3"></script>
+<script type="text/javascript">
+
+	function initialize()
+	{
+		container = document.getElementById("map");
+		options = 
+		{
+			center: new kakao.maps.LatLng(37.5565401,126.9194871),
+			level: 3,
+		};
+		
+		map = new kakao.maps.Map(container, options);
+	}
+	
+	// 지도 타입 컨트롤의 타입을 바꾸는 함수 정의
+	//-- 지도 타입 컨트롤의 지도 또는 스카이뷰 클릭 시
+	//   호출되어 지도 타입을 전환할 수 있도록 구성
+	function setMapType(maptype)
+	{
+		// 확인
+		//alert(maptype);
+		
+		var roadmapControl = document.getElementById("btnRoadmap");
+		var skyviewControl = document.getElementById("btnSkyview");
+		
+		/*
+		// 내가 풀이한 내용 ---------------------------------------
+		if (maptype=="roadmap")
+			map.setMapTypeId(1);
+		if (maptype=="skyview")
+			map.setMapTypeId(3);
+		// --------------------------------------- 내가 풀이한 내용
+		*/
+		
+		// 같이 풀이한 내용 ---------------------------------------
+		if (maptype=='roadmap')
+		{
+			roadmapControl.className = 'selected_btn';
+			skyviewControl.className = 'btn';
+			map.setMapTypeId(kakao.maps.MapTypeId.ROADMAP);
+		}
+		else
+		{
+			skyviewControl.className = 'selected_btn';
+			roadmapControl.className = 'btn';
+			//map.setMapTypeId(kakao.maps.MapTypeId.SKYVIEW);
+			map.setMapTypeId(kakao.maps.MapTypeId.HYBRID);			// check~!!!
+		}
+		// --------------------------------------- 같이 풀이한 내용
+		
+	}
+	
+	// 내가 풀이한 내용 ---------------------------------------
+	function zoomIn()
+	{
+		var level = map.getLevel();
+		map.setLevel(level - 1);
+	}
+	
+	function zoomOut()
+	{
+		var level = map.getLevel();
+		map.setLevel(level + 1);
+	}
+	// --------------------------------------- 내가 풀이한 내용
+	
+	// 같이 풀이한 내용 ---------------------------------------
+	function zoom(action)
+	{
+		var level = map.getLevel();
+		
+		if (action == 'in')		// 확대
+		{
+			map.setLevel(level - 1);
+		}
+		else 		// out		// 축소
+		{
+			map.setLevel(level + 1);
+		}
+	}
+	// --------------------------------------- 같이 풀이한 내용
+
+</script>
+</head>
+<body onload="initialize()">
+
+<!-- ○ 발급받은 App Key -->
+<!-- appkey=6deffd0f352a0e6f8ae48b94ee77f4b3 -->
+<!-- ○ 지도의 중심 좌표 -->
+<!-- 37.5565401,126.9194871 -->
+
+<div>
+	<h1>Kakao Map 사용자 컨트롤 구성</h1>
+	<hr>
+</div>
+
+<div class="map_wrap">
+
+	<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+	
+	<div class="custom_typecontrol radius_border">
+		<span id="btnRoadmap" class="selected_btn" onclick="setMapType('roadmap')">지도</span>
+		<span id="btnSkyview" class="btn" onclick="setMapType('skyview')">스카이뷰</span>
+	</div>
+	
+	<!-- 지도 확대축소 컨트롤 div -->
+	<div class="custom_zoomcontrol radius_border">
+		<span>
+			<!-- <img alt="확대" src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" onclick="zoomIn()"> -->
+			<img alt="확대" src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" onclick="zoom('in')">
+		</span>
+		<span>
+			<!-- <img alt="축소" src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" onclick="zoomOut()"> --> 
+			<img alt="축소" src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" onclick="zoom('out')"> 
+		</span>
+	</div>
+
+</div><!-- close .map_wrap -->
+
+</body>
+</html>

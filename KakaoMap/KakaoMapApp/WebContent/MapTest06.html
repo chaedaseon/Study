@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MapTest06.html</title>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6deffd0f352a0e6f8ae48b94ee77f4b3"></script>
+
+<script type="text/javascript">
+
+	function initialize()
+	{
+		container = document.getElementById("map");
+		
+		options =
+		{
+			center: new kakao.maps.LatLng(37.5565401,126.9194871),
+			level: 3,
+		};
+		
+		map = new kakao.maps.Map(container, options);
+		
+		// 지도 타입 컨트롤 생성
+		//-- 일반 지도와 스카이 뷰로 타입 전환
+		mapTypeControl = new kakao.maps.MapTypeControl();
+		
+		// 지도 타입 컨트롤을 지도 위에 올리기(즉, 지도에 표시)
+		//map.addControl(mapTypeControl);											// 두 번째 파라미터 값은 포지션
+		//map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);		//-- 지정하지 않을 경우 우상단
+		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPLEFT);
+	}
+	
+	function getInfo()
+	{
+		// 지도의 현재 중심 좌표 얻어오기
+		var center = map.getCenter();
+		
+		// 지도의 현재 레벨 얻어오기
+		var level = map.getLevel();
+		
+		// 지도의 타입 얻어오기
+		var mapTypeId = map.getMapTypeId();
+		
+		// 지도의 현재 영역 얻어오기
+		var bounds = map.getBounds();
+		
+		// 얻어낸 현재 영역의 남서쪽 좌표 얻어오기
+		var swLatLng = bounds.getSouthWest();
+		
+		// 얻어낸 현재 영역의 북동쪽 좌표 얻어오기
+		var neLatLng = bounds.getNorthEast();
+		
+		var message = "지도의 중심 좌표는 " + center + " 입니다.<br>";
+		message += "위도는 " + center.getLat();
+		message += ", 경도는 " + center.getLng() + " 인거죠~<br>";
+		message += "지도 레벨은 " + level + " 이며,";
+		message += " 지도의 타입은 " + mapTypeId + " 입니다.<br>";
+		message += "지도의 현재 영역은 " + bounds + " 입니다.<br>";
+		message += "지도의 남서쪽 좌표는 " + swLatLng.getLat();
+		message += ", " + swLatLng.getLng() + " 이고, <br>";
+		message += "지도의 북동쪽 좌표는 " + neLatLng.getLat();
+		message += ", " + neLatLng.getLng() + " 인거죠~<br>";
+		
+		var typeEl = document.getElementById("mapType");
+		typeEl.innerHTML = message;
+	}
+	
+</script>
+</head>
+<body onload="initialize()">
+
+<!-- ○ 발급받은 App Key -->
+<!-- appkey=6deffd0f352a0e6f8ae48b94ee77f4b3 -->
+<!-- ○ 지도의 중심 좌표 -->
+<!-- 37.5565401,126.9194871 -->
+
+<div>
+	<h1>Kakao Map 지도 정보 얻어내기</h1>
+	<hr>
+</div>
+
+<!-- 지도를 그릴 공간 확보(지정) -->
+<div id="map" style="width: 100%; height: 350px;"></div>
+<br>
+
+<p>
+	<button type="button" onclick="getInfo()">지도 정보 확인</button>
+	<br><br>
+	
+	<span id="mapType"></span>
+</p>
+
+
+</body>
+</html>
